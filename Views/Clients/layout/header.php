@@ -28,7 +28,7 @@
                 </div>
                 <div class="item-col">
                     <?php if(!isset($_SESSION['name_user'])) : ?>
-                    <a href="index.php?action=login-clients">
+                    <a href="index.php?action=login">
                     <i class="fa-solid fa-user-tie"></i>
                     <span>Tài khoản của tôi</span>
                     </a>
@@ -45,7 +45,7 @@
                       </li>
                       <li>
                         <i class="fa-solid fa-right-from-bracket"></i
-                        ><a href="index.php?action=logout-clients">Đăng xuất</a>
+                        ><a href="index.php?action=logout">Đăng xuất</a>
                       </li>
                     </ul>
                   </div>

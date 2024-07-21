@@ -32,7 +32,7 @@
           <p>Cảm ơn đã sử dụng website của chúng tôi!</p>
         </article>
         <form action="" method="post">
-        <a href="index.php?action=login-admin" class="btn-submit">
+        <a href="index.php?action=login" class="btn-submit">
           Sign In
        </a>
         </form>

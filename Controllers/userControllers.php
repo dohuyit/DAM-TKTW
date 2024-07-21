@@ -1,12 +1,12 @@
 <?php 
-class ClientsUserControllers{
+class UserControllers{
 
-    public function loginClients(){
+    public function loginUser(){
         $errors = [];
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $name_user = $_POST['name_user'];
             $password = $_POST['password'];
-            $dataUser = (new userClientsModels)->getAllUserClients($name_user);
+            $dataUser = (new userModels)->getAllUser($name_user);
 
             if (empty($name_user) || empty($password)) {
                 if (empty($name_user) && empty($password)) {
@@ -20,7 +20,6 @@ class ClientsUserControllers{
               } else {
                 if ($dataUser) {
                     if ($password === $dataUser['password']) {
-                        $_SESSION['id_user'] = $dataUser['id_user'];
                         $_SESSION['name_user'] = $dataUser;
                         $_SESSION['role'] = $dataUser['name_role'];
                         if ($dataUser['name_role'] === 'admin') {
@@ -43,7 +42,7 @@ class ClientsUserControllers{
         );
     }
 
-    public function registerClients() {
+    public function registerUser() {
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name_user = $_POST['name_user'];
@@ -62,12 +61,12 @@ class ClientsUserControllers{
                     $errors['password'] = "Mật khẩu không được để trống";
                 }
             } else {
-                $userModel = new userClientsModels();
+                $userModel = (new userModels);
                 if ($userModel->countAllEmailUser($name_user, $email)) {
                     $errors['email_user'] = "Email hoặc Tên đã tồn tại, hãy chọn email khác";
                     $errors['name_user'] = "Email hoặc Tên đã tồn tại, hãy chọn email khác";
                 } else {
-                    $userModel->registerUserClients($name_user, $email, $password, $role);
+                    $userModel->registerUser($name_user, $email, $password, $role);
                     echo "<script>alert('Đăng kí thành công!');window.location.href='index.php?action=login-clients';</script>";
                     die();
                 }
@@ -82,9 +81,18 @@ class ClientsUserControllers{
         ]);
     }
 
-    public function logoutClients(){
-        unset($_SESSION['name_user']);
-        header('location: index.php?action=login-clients');
+    public function viewLogout(){
+        viewAdmin('a.logout');
+    }
+
+    public function logoutUser(){
+        if($_SESSION['role'] === 'admin'){
+            unset($_SESSION['name_user']);
+            echo "<script>alert('Đăng xuất thành công!');window.location.href='index.php?action=view-logout';</script>";
+        }else {
+            unset($_SESSION['name_user']);
+            echo "<script>alert('Đăng xuất thành công!');window.location.href='index.php';</script>";
+        }
     }
 }
 ?>

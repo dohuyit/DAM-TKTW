@@ -1,21 +1,6 @@
 <?php 
 class ClientsControllers{
     
-    // public function __construct()
-    // {
-    //     $this->checkAccess('user');
-    // }
-
-    // private function checkAccess($requiredRole) {
-    //     if (!isset($_SESSION['role']) || $_SESSION['role'] !== $requiredRole) {
-    //         if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-    //             header('Location: index.php?action=admin');
-    //         } else {
-    //             header('Location: index.php?action=login-clients');
-    //         }
-    //         exit();
-    //     }
-    // }
 
     public function myClients(){
         $cate_data = (new CategoryModel)->getAllCategories();

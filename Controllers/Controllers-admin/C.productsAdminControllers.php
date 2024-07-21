@@ -3,7 +3,7 @@ class AdminProductsControllers{
     public function __construct()
     {
         if(!isset($_SESSION['name_user'])){
-            header("location: index.php?action=login-admin");
+            header("location: index.php?action=login");
             die;
         }
     }
@@ -51,7 +51,7 @@ class AdminProductsControllers{
     
         if (!empty($errors)) {
             $dataCate = (new CategoryModel)->getAllCategories();
-        $name_user = $_SESSION['name_user'] ?? '';
+            $name_user = $_SESSION['name_user'] ?? '';
             return viewAdmin('add-products', [
                 'dataCate' => $dataCate,
                 'errors' => $errors,

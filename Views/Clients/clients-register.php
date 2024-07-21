@@ -78,7 +78,7 @@
           </div>
           <button type="submit" class="btn-submit">SignUp</button>
           <div class="signin-orther-title">
-            <p>Already have an account? <a href="index.php?action=login-clients">login</a></p>
+            <p>Already have an account? <a href="index.php?action=login">login</a></p>
             <h4>Sign in with</h4>
             <div class="form-media">
               <span><i class="fa-brands fa-google"></i></span>

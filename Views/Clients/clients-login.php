@@ -67,7 +67,7 @@
           </div>
           <button type="submit" class="btn-submit">Login</button>
           <div class="signin-orther-title">
-            <p>Don't have an account? <a href="index.php?action=register-clients">signup</a></p>
+            <p>Don't have an account? <a href="index.php?action=register">signup</a></p>
             <h4>Sign in with</h4>
             <div class="form-media">
               <span><i class="fa-brands fa-google"></i></span>

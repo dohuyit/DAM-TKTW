@@ -43,7 +43,7 @@ class ProductsClientController {
       }
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $product_id = $_POST['id'];
-          $user_id = $_SESSION['id_user']; 
+          $user_id = $_SESSION['name_user']['id_user']; 
           $content = $_POST['content_comments'];
           (new commentModelClients)->addComment($product_id, $user_id, $content);
           header("Location: index.php?action=productContent&product_id=$product_id");
@@ -51,6 +51,7 @@ class ProductsClientController {
       }
    }
 
+   // tìm kiếm sản phẩm
    public function searchProducts(){
     $name_user = $_SESSION['name_user'] ?? '';
     $cate_data = (new CategoryModel)->getAllCategories();
@@ -69,5 +70,4 @@ class ProductsClientController {
         'cate_data' => $cate_data,
     ]);
    }
-  
 }

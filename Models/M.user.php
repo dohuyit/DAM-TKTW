@@ -1,11 +1,11 @@
 <?php 
-class userClientsModels{
+class userModels{
     public $conn = null;
     public function __construct() {
         $this->conn = pdo_get_connection();
     }
 
-    public function getAllUserClients($name_user){
+    public function getAllUser($name_user){
         // $sql = "SELECT * FROM user WHERE name_user = :name_user";
         $sql = "SELECT user.*,roles.name_role FROM user INNER JOIN roles ON user.id_role = roles.id_role WHERE name_user = :name_user";
         $stmt = $this->conn->prepare($sql);
@@ -14,7 +14,7 @@ class userClientsModels{
         return $result ? $result : false;
     }
 
-    public function registerUserClients($name_user,$email_user,$password,$id_role){
+    public function registerUser($name_user,$email_user,$password,$id_role){
         $sql = "INSERT INTO user (name_user, email_user, `password`,id_role) VALUES (:name_user, :email_user, :password,:id_role)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([

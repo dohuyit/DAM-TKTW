@@ -28,7 +28,7 @@
                       </li>
                       <li>
                         <i class="fa-solid fa-right-from-bracket"></i
-                        ><a href="index.php?action=logout-admin">Đăng xuất</a>
+                        ><a href="index.php?action=logout">Đăng xuất</a>
                       </li>
                     </ul>
                   </div>

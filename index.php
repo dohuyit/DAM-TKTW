@@ -4,30 +4,28 @@ session_start();
 require_once "Common/env.php";
 require_once "Common/PDO.php";
 // MODELS
-require_once "Models/category.php";
+require_once "Models/M.category.php";
+require_once "Models/M.user.php";
 // === Phần Admin ===//
 require_once "Models/Models-admin/M.Admin.php";
 require_once "Models/Models-admin/M.productsAdmin.php";
-require_once "Models/Models-admin/M.userLoginAdmin.php";
 require_once "Models/Models-admin/M.inforUserAdmin.php";
 require_once "Models/Models-admin/M.commentAdmin.php";
 // === Phần Clients ===//
 require_once "Models/Models-clients/M.Clients.php";
 require_once "Models/Models-clients/M.productsClients.php";
-require_once "Models/Models-clients/M.userClients.php";
 require_once "Models/Models-clients/M.commentClients.php";
 // CONTROLERS
 require_once "Controllers/categoryControllers.php";
+require_once "Controllers/userControllers.php";
 // === Phần Admin ===//
 require_once "Controllers/Controllers-admin/C.AdminControllers.php";
 require_once "Controllers/Controllers-admin/C.productsAdminControllers.php";
-require_once "Controllers/Controllers-admin/C.userLoginAdminControllers.php";
 require_once "Controllers/Controllers-admin/C.inforUserAdminControllers.php";
 require_once "Controllers/Controllers-admin/M.commentAdminControllers.php";
 // === Phần Clients ===//
 require_once "Controllers/Controllers-clients/C.ClientsControllers.php";
 require_once "Controllers/Controllers-clients/C.productsClientsControllers.php";
-require_once "Controllers/Controllers-clients/C.userClientsControllers.php";
 $action = $_GET["action"] ?? "";
 pdo_get_connection();
 match ($action) {
@@ -37,13 +35,11 @@ match ($action) {
     "productContent" => (new ProductsClientController)->ProductsContent(),
     "add-comment" => (new ProductsClientController)->addComment(),
     "search-products" => (new ProductsClientController)->searchProducts(),
-    "login-clients" =>(new ClientsUserControllers)->loginClients(),
-    "register-clients" =>(new ClientsUserControllers)->registerClients(),
-    "logout-clients" =>(new ClientsUserControllers)->logoutClients(),
+    "login" =>(new UserControllers)->loginUser(),
+    "register" =>(new UserControllers)->registerUser(),
+    "view-logout" =>(new UserControllers)->viewLogout(),
+    "logout" =>(new UserControllers)->logoutUser(),
     // Phần admin page
-    "login-admin" =>(new AdminUserControllers)->login(),
-    "view-logout-admin" =>(new AdminUserControllers)->viewLogout(),
-    "logout-admin" =>(new AdminUserControllers)->logout(),
     // 1. CRUD danh mục
     "admin" => (new AdminControllers)->myAdmin(),
     "category" =>(new CategoryControllers)->listCategory(),

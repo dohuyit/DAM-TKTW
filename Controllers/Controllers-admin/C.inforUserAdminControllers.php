@@ -4,7 +4,7 @@ class inforUserAdminControllers{
     public function __construct()
     {
         if(!isset($_SESSION['name_user'])){
-            header("location: index.php?action=login-admin");
+            header("location: index.php?action=login");
             die;
         }
     }
