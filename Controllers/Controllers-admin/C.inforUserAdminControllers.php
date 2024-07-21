@@ -8,7 +8,15 @@ class inforUserAdminControllers{
             die;
         }
     }
+
+    private function checkUserRole() {
+        if ($_SESSION['role'] !== 'admin') {
+            echo "<script>alert('Bạn không có quyền truy cập trang này!');window.location.href='index.php';</script>";
+            exit();
+        }
+    }
     public function listUser(){
+        $this->checkUserRole();
         $name_user = $_SESSION['name_user'] ?? '';
         $data_users = (new inforUserModel)->getAllUser();
         viewAdmin('myUser',[
@@ -18,6 +26,7 @@ class inforUserAdminControllers{
     }
 
     public function addUser(){
+        $this->checkUserRole();
         $name_user = $_SESSION['name_user'] ?? '';
         $dataRole= (new inforUserModel)->getAllRole();
         viewAdmin('add-user',[
@@ -58,6 +67,7 @@ class inforUserAdminControllers{
     }
 
     public function updateUser(){
+        $this->checkUserRole();
         $message = '';
         $errors =[];
         if($_SERVER['REQUEST_METHOD'] == "POST"){

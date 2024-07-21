@@ -1,6 +1,19 @@
 <?php 
 class CategoryControllers{
+    public function __construct() {
+        if (!isset($_SESSION['name_user'])) {
+            header("location: index.php?action=login");
+            die();
+        }
+    }
+    private function checkUserRole() {
+        if ($_SESSION['role'] !== 'admin') {
+            echo "<script>alert('Bạn không có quyền truy cập trang này!');window.location.href='index.php';</script>";
+            exit();
+        }
+    }
     public function listCategory(){
+        $this->checkUserRole();
         $name_user = $_SESSION['name_user'] ?? '';
         $dataCateAll = (new CategoryModel)->getAllCategories();
         viewAdmin('myCategory',['dataCateAll'=>$dataCateAll,'name_user'=>$name_user]);
@@ -49,6 +62,7 @@ class CategoryControllers{
     
 
     public function updateCategory(){
+        $this->checkUserRole();
         $message = '';
         $errors = [];
         if($_SERVER['REQUEST_METHOD'] == 'POST'){

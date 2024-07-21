@@ -1,7 +1,16 @@
 <?php
 class ProductsClientController {
+
+    private function checkUserRole() {
+        if ($_SESSION['role'] === 'admin') {
+            echo "<script>alert('Bạn không có quyền truy cập trang này!');window.location.href='index.php?action=admin';</script>";
+            exit();
+        }
+    }
+
     // sản phẩm theo danh mục
     public function ProductsByCate() {
+        $this->checkUserRole(); 
         $id_cate = $_GET['id_cate'];
         $dataProducts = (new ModelProductsClients)->getProductsByCate($id_cate);  // Chỉ truyền vào id_cate
         $cate_data = (new CategoryModel)->getAllCategories();
@@ -19,6 +28,7 @@ class ProductsClientController {
 
     // chi tiết sản phẩm
     public function ProductsContent() {
+        $this->checkUserRole(); 
         $cate_data = (new CategoryModel)->getAllCategories();
         $product_id = $_GET['product_id'];
         $productModel = new ModelProductsClients();
@@ -53,6 +63,7 @@ class ProductsClientController {
 
    // tìm kiếm sản phẩm
    public function searchProducts(){
+    $this->checkUserRole(); 
     $name_user = $_SESSION['name_user'] ?? '';
     $cate_data = (new CategoryModel)->getAllCategories();
     if (isset($_POST['keyword']) && !empty($_POST['keyword'])) {

@@ -1,8 +1,15 @@
 <?php 
-class ClientsControllers{
-    
+class ClientsControllers {
 
-    public function myClients(){
+    private function checkUserRole() {
+        if ($_SESSION['role'] === 'admin') {
+            echo "<script>alert('Bạn không có quyền truy cập trang này!');window.location.href='index.php?action=admin';</script>";
+            exit();
+        }
+    }
+
+    public function myClients() {
+        $this->checkUserRole(); 
         $cate_data = (new CategoryModel)->getAllCategories();
         $products_sale = (new ModelClients)->getProductsSales();
         $products_favourite = (new ModelClients)->getProductsFavourite(); 
@@ -12,7 +19,7 @@ class ClientsControllers{
         $valentine_products = (new ModelClients)->getValentine();
         $watch_products = (new ModelClients)->getWatch();
         $name_user = $_SESSION['name_user'] ?? '';
-        viewClients("clients",[
+        viewClients("clients", [
             'cate_data' => $cate_data,
             'products_sale' => $products_sale,
             'products_favourite' => $products_favourite,
@@ -21,7 +28,7 @@ class ClientsControllers{
             'pearl_products' => $pearl_products,
             'valentine_products' => $valentine_products,
             'watch_products' => $watch_products,
-            'name_user' =>$name_user
+            'name_user' => $name_user
         ]);
     }
 }

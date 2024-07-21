@@ -8,7 +8,15 @@ class commentAdminControllers{
             die;
         }
     }
+
+    private function checkUserRole() {
+        if ($_SESSION['role'] !== 'admin') {
+            echo "<script>alert('Bạn không có quyền truy cập trang này!');window.location.href='index.php';</script>";
+            exit();
+        }
+    }
     public function listComments(){
+        $this->checkUserRole();
         $name_user = $_SESSION['name_user'] ?? '';
         $data_comments = (new ModelCommentAdmin)->getAllComment();
         viewAdmin('a.comment',[
@@ -18,6 +26,7 @@ class commentAdminControllers{
     }
 
     public function viewContentComments(){
+        $this->checkUserRole();
         $name_user = $_SESSION['name_user'] ?? '';
         $id = $_GET['id'];
         $data_views = (new ModelCommentAdmin)->getCommentsByProductId($id);

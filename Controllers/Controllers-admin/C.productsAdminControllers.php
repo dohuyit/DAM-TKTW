@@ -8,13 +8,22 @@ class AdminProductsControllers{
         }
     }
 
+    private function checkUserRole() {
+        if ($_SESSION['role'] !== 'admin') {
+            echo "<script>alert('Bạn không có quyền truy cập trang này!');window.location.href='index.php';</script>";
+            exit();
+        }
+    }
+
     public function listProducts(){
+        $this->checkUserRole();
         $name_user = $_SESSION['name_user'] ?? '';
         $dataAll = (new ModelProductsAdmin)->getAllProducts();
         viewAdmin('myProducts',['dataAll'=>$dataAll,'name_user'=>$name_user]);
     }
 
     public function addProducts(){
+        $this->checkUserRole();
         $name_user = $_SESSION['name_user'] ?? '';
         $dataCate = (new CategoryModel)->getAllCategories();
         viewAdmin('add-products',['dataCate'=>$dataCate,'name_user'=>$name_user]);
@@ -81,6 +90,7 @@ class AdminProductsControllers{
     }
 
     public function updateProducts(){
+        $this->checkUserRole();
       $message = "";
       $errors = [];
 
