@@ -24,6 +24,10 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+a{
+  color: var(--color-title);
+}
+
 .container {
   max-width: 95%;
   margin: auto;

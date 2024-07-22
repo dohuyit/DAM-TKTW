@@ -11,6 +11,7 @@ require_once "Models/Models-admin/M.Admin.php";
 require_once "Models/Models-admin/M.productsAdmin.php";
 require_once "Models/Models-admin/M.inforUserAdmin.php";
 require_once "Models/Models-admin/M.commentAdmin.php";
+require_once "Models/Models-admin/M.analystAdmin.php";
 // === Phần Clients ===//
 require_once "Models/Models-clients/M.Clients.php";
 require_once "Models/Models-clients/M.productsClients.php";
@@ -22,7 +23,8 @@ require_once "Controllers/userControllers.php";
 require_once "Controllers/Controllers-admin/C.AdminControllers.php";
 require_once "Controllers/Controllers-admin/C.productsAdminControllers.php";
 require_once "Controllers/Controllers-admin/C.inforUserAdminControllers.php";
-require_once "Controllers/Controllers-admin/M.commentAdminControllers.php";
+require_once "Controllers/Controllers-admin/C.commentAdminControllers.php";
+require_once "Controllers/Controllers-admin/C.analystAdminControllers.php";
 // === Phần Clients ===//
 require_once "Controllers/Controllers-clients/C.ClientsControllers.php";
 require_once "Controllers/Controllers-clients/C.productsClientsControllers.php";
@@ -62,5 +64,8 @@ match ($action) {
     "admin-comment" => (new commentAdminControllers()) ->listComments(),
     "admin-view-comment" => (new commentAdminControllers()) ->viewContentComments(),
     "delete-comment" => (new commentAdminControllers()) ->deleteComment(),
+    // 5. Quản lí thống kê
+    "admin-analyst" => (new analystAdminControllers())->listChart(),
+    default =>  "Không tìm thấy trang này!",
 }
 ?>

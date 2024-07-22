@@ -35,7 +35,7 @@
           <h3><img src="Common/assets/img/pnj-logo.png" alt="" /></h3>
           <p>Đăng kí tài khoản để vào website</p>
         </article>
-        <form action="index.php?action=register-clients" method="post">
+        <form action="index.php?action=register" method="post">
           <div class="item-form">
             <label for="">Username</label>
             <input
@@ -63,7 +63,7 @@
           <div class="item-form">
             <label for="">Password</label>
             <input
-              type="text"
+              type="password"
               name="password"
               id=""
               placeholder="Mật khẩu của bạn..."

@@ -259,6 +259,7 @@ a{
   transform: scale(0);
   transform-origin: top;
   transition: 0.5s ease;
+  z-index: 1000;
 }
 
 .tab-component-user .list-component-user li {
@@ -289,151 +290,39 @@ a{
   color: #fff;
 }
 
-main h1 {
+.title-main h1 {
   text-align: left;
   color: #000000;
-  margin: 20px 0;
+  margin: 25px 0;
   font-size: 30px;
 }
 
-.main-content .body{
+/* .main-content{
   background-color: var(--background-primary);
   box-shadow: var(--box-shadow-main);
-  padding: 10px;
-}
-
-.body-main-table table{
-  width: 100%;
-  height: max-content;
-  cursor: all-scroll;
-  scroll-behavior: smooth;
-}
-
-.body-main-table table img{
-  width: 140px;
-  /* height: 80px; */
-  object-fit: cover;
-}
-
-.body-main-table table :is(thead,tbody){
-  width: 100%;
-  text-align: center;
-}
-
-table thead th{
-  font-weight: 600;
-  font-size: 15px;
-  text-transform: capitalize;
-  background-color: #034990;
-  color: var(--background-primary);
-  padding: 15px 10px;
-}
-
-table thead th:not(th:last-child){
-  border-right: 1px solid var(--background-primary);
-}
-
-table tbody tr td{
-  padding: 15px 10px;
-  font-size: 16px;
-  border: 1px solid #dad1d1;
- vertical-align: middle ;  
-}
-
-/* table tbody tr td:nth-child(2){
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 } */
 
-table tbody tr td:nth-child(2) p{
-  width: 400px;
-  line-height: 25px;
-  display: inline-block;
+.item-chart{
+  width: 100%;
+  height: 500px;
+  margin-bottom: 15px;
+  background-color: var(--background-primary);
+  box-shadow: var(--box-shadow-main);
 }
 
-table tbody tr:nth-child(even){
-  background-color: #dce0f7;
-}
-
-table tbody tr :is(.button-view,.button-close) a{
-  color: var(--background-primary);
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-}
-
-table tbody tr :is(.button-view,.button-close) a i{
-  transform: translateY(35%);
-}
-
-.button-view a{
-  background-color: #d3a54a;
-}
-
-.button-close a{
-  background-color: #ff3030;
-}
-
-.btn-revert{
-  display: inline-block;
-  background-color: #0b4a81;
-  padding: 10px 14px;
-  color: #fff;
-  font-size: 15px;
-  margin-top: 20px;
-  border-radius: 20px;
-  width: 120px;
+#chart-product,#chart-user{
+  height: 90%;
   position: relative;
-  padding-left: 35px;
+  z-index: 1;
 }
 
-.btn-revert span{
-  position: absolute;
-  top: 10px;
-  left: 12px;
+.item-chart p{
+  padding: 12px 0;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  font-style: italic;
 }
-
- .body-main-table .list-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 40px 0 15px;
-  }
-  
-  .body-main-table .list-page li {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.08);
-    color: #000000;
-    font-size: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .body-main-table li.active {
-    background-color: #407eb5c9;
-    color: #fff;
-    font-weight: bold;
-    animation: outline 1s ease infinite forwards;
-  }
-  
-  @keyframes outline {
-    0% {
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.438);
-    }
-    100% {
-      box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-    }
-  }
-
-/* ======================================== */
 
 footer .body{
   background-color: var(--background-primary);

@@ -14,34 +14,6 @@
     />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-    //   google.charts.load('current', {'packages':['corechart']});
-    //   google.charts.setOnLoadCallback(drawChart);
-
-    //   function drawChart() {
-    //     var data = google.visualization.arrayToDataTable([
-    //       ['', '', { role: 'style' }],
-    //       <?php foreach ($listProductsChart as $ProductChart): ?>
-    //       ['<?=$ProductChart['name_cate']?>',<?=$ProductChart['product_count']?> , 'stroke-color: #003468; stroke-width: 4; fill-color: #326fac '],
-    //       <?php endforeach;?>
-    //     ]);
-
-    //     var options = {
-    //   title: 'Thống kê sản phẩm',
-    //   hAxis: {
-    //     title: 'Sản Phẩm theo danh mục',
-    //     titleTextStyle: { color: '#333' },
-    //     textStyle: { fontSize: 12 }, 
-    //     slantedText: true, 
-    //     slantedTextAngle: 45 
-    //   },
-    //   vAxis: { minValue: 0 },
-    //   chartArea: {width: '100%', height: '100%'}
-    // };
-
-    //     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-    //     chart.draw(data, options);
-    //   }
-
     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -158,31 +130,18 @@
                     <h2>Biểu đồ doanh thu</h2>
                     <div class="body">
                       <!-- <p>Chưa có biểu đồ</p> -->
-                      <div id="chart_div" style="width: 100%; height: auto;"></div>
+                      <div id="chart_div" style="width: 100%; height: 250px;"></div>
                     </div>
                   </div>
                   <div class="container-user-store">
                      <h2>Người dùng mới</h2>
-                     <div class="cart-user-store">
+                     <?php foreach ($listNewUsers as $newUser): ?>
+                      <div class="cart-user-store">
                       <img src="Common/assets/img/round-account-button-with-user-inside_icon-icons.com_72596.svg" alt="">
-                      <p>Đỗ Quốc Huy</p>
-                      <span>Xem chi tiết</span>
+                      <p><?=$newUser['name_user']?></p>
+                      <span><a href="index.php?action=admin-user">Xem chi tiết</a></span>
                      </div>
-                     <div class="cart-user-store">
-                      <img src="Common/assets/img/round-account-button-with-user-inside_icon-icons.com_72596.svg" alt="">
-                      <p>Đỗ Quốc Huy</p>
-                      <span>Xem chi tiết</span>
-                     </div>
-                     <div class="cart-user-store">
-                      <img src="Common/assets/img/round-account-button-with-user-inside_icon-icons.com_72596.svg" alt="">
-                      <p>Đỗ Quốc Huy</p>
-                      <span>Xem chi tiết</span>
-                     </div>
-                     <div class="cart-user-store">
-                      <img src="Common/assets/img/round-account-button-with-user-inside_icon-icons.com_72596.svg" alt="">
-                      <p>Đỗ Quốc Huy</p>
-                      <span>Xem chi tiết</span>
-                     </div>
+                     <?php endforeach;?>
                   </div>
                  </div>
               </div>

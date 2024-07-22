@@ -1,7 +1,10 @@
 <?php
 class ProductsClientController {
 
-    private function checkUserRole() {
+    public function checkUserRole() {
+        if(!isset($_SESSION['role'])){
+            $_SESSION['role'] = "";
+        }
         if ($_SESSION['role'] === 'admin') {
             echo "<script>alert('Bạn không có quyền truy cập trang này!');window.location.href='index.php?action=admin';</script>";
             exit();

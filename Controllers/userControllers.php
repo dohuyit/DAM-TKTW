@@ -67,7 +67,7 @@ class UserControllers{
                     $errors['name_user'] = "Email hoặc Tên đã tồn tại, hãy chọn email khác";
                 } else {
                     $userModel->registerUser($name_user, $email, $password, $role);
-                    echo "<script>alert('Đăng kí thành công!');window.location.href='index.php?action=login-clients';</script>";
+                    echo "<script>alert('Đăng kí thành công!');window.location.href='index.php?action=login';</script>";
                     die();
                 }
             }

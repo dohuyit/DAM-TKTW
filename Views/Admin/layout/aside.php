@@ -1,14 +1,14 @@
 <aside>
         <div class="aside-body">
           <div class="aside-logo">
-            <img src="Common/assets/img/pnj-logo.png" alt="" />
+            <a href="index.php?action=admin"><img src="Common/assets/img/pnj-logo.png" alt="" /></a>
           </div>
           <nav class="aside-nav">
             <ul class="aside-list">
               <div class="box-nav-topic1">
-                <h2>Dashboard</h2>
+                <h2><a href="index.php?action=admin">Dashboard</a></h2>
                 <li class="item-nav-aside">
-                  <p><i class="fa-solid fa-store"></i><span>Trang chủ</span></p>
+                  <p><i class="fa-solid fa-store"></i><a href="index.php?action=admin">Trang chủ</a></p>
                 </li>
                 <li class="item-nav-aside">
                   <p><i class="fa-solid fa-wrench"></i><span>Cài đặt</span></p>
@@ -109,7 +109,7 @@
                   </div>
                   <div class="dropdow-child">
                     <ul class="dropdown-child-list">
-                      <li><a href="#">Quản Lí Thống Kê</a></li>
+                      <li><a href="index.php?action=admin-analyst">Quản Lí Thống Kê</a></li>
                     </ul>
                   </div>
                 </li>

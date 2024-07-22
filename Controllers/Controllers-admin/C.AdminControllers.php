@@ -19,9 +19,11 @@ class AdminControllers {
         $this->checkUserRole();
         $name_user = $_SESSION['name_user'] ?? '';
         $listProductsChart = (new ModelAdmin)->countProductsByCategory();
+        $listNewUsers = (new ModelAdmin)->showUser();
         viewAdmin('admin', [
             'name_user' => $name_user,
-            'listProductsChart' => $listProductsChart
+            'listProductsChart' => $listProductsChart,
+            'listNewUsers' => $listNewUsers
         ]);
     }
 }
