@@ -2,9 +2,9 @@
 class AdminControllers {
    
     public function __construct() {
-        if (!isset($_SESSION['name_user'])) {
+        if(!isset($_SESSION['name_account'])){
             header("location: index.php?action=login");
-            die();
+            die;
         }
     }
 
@@ -17,11 +17,11 @@ class AdminControllers {
 
     public function myAdmin() {
         $this->checkUserRole();
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
         $listProductsChart = (new ModelAdmin)->countProductsByCategory();
         $listNewUsers = (new ModelAdmin)->showUser();
         viewAdmin('admin', [
-            'name_user' => $name_user,
+            'name_account' => $name_account,
             'listProductsChart' => $listProductsChart,
             'listNewUsers' => $listNewUsers
         ]);

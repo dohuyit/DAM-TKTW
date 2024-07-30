@@ -5,36 +5,34 @@ class userModels{
         $this->conn = pdo_get_connection();
     }
 
-    public function getAllUser($name_user){
-        // $sql = "SELECT * FROM user WHERE name_user = :name_user";
-        $sql = "SELECT user.*,roles.name_role FROM user INNER JOIN roles ON user.id_role = roles.id_role WHERE name_user = :name_user";
+    public function getAllUser($name_account){
+        $sql = "SELECT user.*,roles.name_role FROM user INNER JOIN roles ON user.id_role = roles.id_role WHERE name_account = :name_account";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([':name_user' => $name_user]);
+        $stmt->execute([':name_account' => $name_account]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result : false;
     }
 
-    public function registerUser($name_user,$email_user,$password,$id_role){
-        $sql = "INSERT INTO user (name_user, email_user, `password`,id_role) VALUES (:name_user, :email_user, :password,:id_role)";
+    public function registerUser($name_account,$email_user,$password,$id_role){
+        $sql = "INSERT INTO user (name_account, email_user, `password`,id_role) VALUES (:name_account, :email_user, :password,:id_role)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
-            ':name_user' => $name_user,
+            ':name_account' => $name_account,
             ':email_user' => $email_user,
             ':password' => $password,
             ':id_role' => $id_role,
         ]);
     }
 
-    public function countAllEmailUser($name_user,$email_user){
-        $sql = "SELECT COUNT(*) FROM user WHERE name_user = :name_user OR email_user = :email_user";
+    public function countAllEmailUser($name_account,$email_user){
+        $sql = "SELECT COUNT(*) FROM user WHERE name_account = :name_account OR email_user = :email_user";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(
             [
-                ':name_user' => $name_user,
+                ':name_account' => $name_account,
                 ':email_user' => $email_user,
             ]
         );
-        // return $stmt->fetchColumn() > 0;
         return $stmt->fetchColumn() > 0;
     }
 

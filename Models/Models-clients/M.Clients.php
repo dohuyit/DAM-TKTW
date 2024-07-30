@@ -13,42 +13,44 @@ class ModelClients{
    }
  
    public function getProductsFavourite(){
-    $sql = "SELECT * FROM products WHERE view > 0 ORDER BY view DESC";
+    $sql = "SELECT * FROM products ORDER BY view DESC LIMIT 7";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
    }
 
+
+
    public function getDiamond(){
-    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Trang sức kim cương' AND flash_sale = 0";
+    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Trang sức kim cương' AND flash_sale = 0 ORDER BY id DESC";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
    }
 
    public function getGold(){
-    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Trang sức vàng kim' AND flash_sale = 0";
+    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Trang sức vàng kim' AND flash_sale = 0 ORDER BY id DESC";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
    }
 
    public function getPearl(){
-    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Trang sức ngọc trai' AND flash_sale = 0";
+    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Trang sức ngọc trai' AND flash_sale = 0 ORDER BY id DESC";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
    }
 
    public function getValentine(){
-    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Trang sức đá màu' AND flash_sale = 0";
+    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Trang sức đá màu' AND flash_sale = 0 ORDER BY id DESC";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
    }
 
    public function getWatch(){
-    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Đồng hồ thời trang' AND flash_sale = 0";
+    $sql = "SELECT * FROM products INNER JOIN category ON products.id_cate = category.id_cate WHERE name_cate = 'Đồng hồ thời trang' AND flash_sale = 0 ORDER BY id DESC";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

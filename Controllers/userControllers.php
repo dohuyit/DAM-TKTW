@@ -1,26 +1,32 @@
 <?php 
 class UserControllers{
-
     public function loginUser(){
         $errors = [];
+        if(isset($_SESSION['name_account']) && $_SESSION['role'] == 'user'){
+            header("location: index.php");
+            die;
+        }else if(isset($_SESSION['name_account']) && $_SESSION['role'] == 'admin'){
+            header("location: index.php?action=admin");
+            die;
+        }
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $name_user = $_POST['name_user'];
+            $name_account = $_POST['name_account'];
             $password = $_POST['password'];
-            $dataUser = (new userModels)->getAllUser($name_user);
+            $dataUser = (new userModels)->getAllUser($name_account);
 
-            if (empty($name_user) || empty($password)) {
-                if (empty($name_user) && empty($password)) {
-                    $errors['name_user'] = "Tên tài khoản không được để trống";
+            if (empty($name_account) || empty($password)) {
+                if (empty($name_account) && empty($password)) {
+                    $errors['name_account'] = "Tên tài khoản không được để trống";
                     $errors['password'] = "Mật khẩu không được để trống";
-                } else if (empty($name_user)) {
-                      $errors['name_user'] = "Tên tài khoản không được để trống";
+                } else if (empty($name_account)) {
+                      $errors['name_account'] = "Tên tài khoản không được để trống";
                 } else if (empty($password)) {
                       $errors['password'] = "Mật khẩu không được để trống";
                 };
               } else {
                 if ($dataUser) {
                     if ($password === $dataUser['password']) {
-                        $_SESSION['name_user'] = $dataUser;
+                        $_SESSION['name_account'] = $dataUser;
                         $_SESSION['role'] = $dataUser['name_role'];
                         if ($dataUser['name_role'] === 'admin') {
                             echo "<script>alert('Đăng nhập thành công!');window.location.href='index.php?action=admin';</script>";
@@ -31,13 +37,13 @@ class UserControllers{
                         $errors['password'] = "Mật khẩu không đúng, hãy nhập lại";
                     }
                 } else {
-                    $errors['name_user'] = "Tài khoản không đúng, hãy nhập lại";
+                    $errors['name_account'] = "Tài khoản không đúng, hãy nhập lại";
                 }
             }
         }
         viewClients('clients-login',[
             'errors' => $errors ?? '',
-            'name_user' => $name_user ?? ''
+            'name_account' => $name_account ?? ''
         ]
         );
     }
@@ -45,14 +51,14 @@ class UserControllers{
     public function registerUser() {
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $name_user = $_POST['name_user'];
+            $name_account = $_POST['name_account'];
             $email = $_POST['email_user'];
             $password = $_POST['password'];
             $role = 2;
 
-            if (empty($name_user) || empty($password) || empty($email)) {
-                if (empty($name_user)) {
-                    $errors['name_user'] = "Tên tài khoản không được để trống";
+            if (empty($name_account) || empty($password) || empty($email)) {
+                if (empty($name_account)) {
+                    $errors['name_account'] = "Tên tài khoản không được để trống";
                 }
                 if (empty($email)) {
                     $errors['email_user'] = "Email không được để trống";
@@ -62,11 +68,11 @@ class UserControllers{
                 }
             } else {
                 $userModel = (new userModels);
-                if ($userModel->countAllEmailUser($name_user, $email)) {
+                if ($userModel->countAllEmailUser($name_account, $email)) {
                     $errors['email_user'] = "Email hoặc Tên đã tồn tại, hãy chọn email khác";
-                    $errors['name_user'] = "Email hoặc Tên đã tồn tại, hãy chọn email khác";
+                    $errors['name_account'] = "Email hoặc Tên đã tồn tại, hãy chọn email khác";
                 } else {
-                    $userModel->registerUser($name_user, $email, $password, $role);
+                    $userModel->registerUser($name_account, $email, $password, $role);
                     echo "<script>alert('Đăng kí thành công!');window.location.href='index.php?action=login';</script>";
                     die();
                 }
@@ -75,7 +81,7 @@ class UserControllers{
 
         viewClients('clients-register', [
             'errors' => $errors,
-            'name_user' => $name_user ?? '',
+            'name_account' => $name_account ?? '',
             'email' => $email ?? '',
             'password' => $password ?? ''
         ]);
@@ -87,10 +93,10 @@ class UserControllers{
 
     public function logoutUser(){
         if($_SESSION['role'] === 'admin'){
-            unset($_SESSION['name_user']);
+            unset($_SESSION['name_account']);
             echo "<script>alert('Đăng xuất thành công!');window.location.href='index.php?action=view-logout';</script>";
         }else {
-            unset($_SESSION['name_user']);
+            unset($_SESSION['name_account']);
             echo "<script>alert('Đăng xuất thành công!');window.location.href='index.php';</script>";
         }
     }

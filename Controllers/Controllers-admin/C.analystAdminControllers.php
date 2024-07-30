@@ -1,11 +1,11 @@
 <?php 
 class analystAdminControllers{
     public function listChart(){
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
         $dataProducts = (new ModelAnalystAdmin)->analystProductsByCategory();
         $dataUsers = (new ModelAnalystAdmin)->analystUserByRole();
         viewAdmin('a.analyst',[
-            'name_user' => $name_user,
+            'name_account' => $name_account,
             'dataProducts' => $dataProducts,
             'dataUsers' => $dataUsers,
         ]);

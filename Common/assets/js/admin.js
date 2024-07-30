@@ -6,19 +6,14 @@ itemNav.forEach((item, index) => {
 });
 
 // ================= CHECK BOX =======================
-// Chọn tất cả các checkbox và các toggle-box
 var checkboxes = document.querySelectorAll(".toggle-input");
 var btnCheck = document.querySelectorAll(".toggle-box");
 
-// Lặp qua tất cả các btnCheck và gán sự kiện click
 btnCheck.forEach((btn, index) => {
   btn.addEventListener("click", (event) => {
-    event.preventDefault(); // Ngăn chặn hành vi mặc định của form
-    // Lấy checkbox liên quan đến toggle-box này
+    event.preventDefault();
     var checkbox = checkboxes[index];
-    // Toggle trạng thái của checkbox
     checkbox.checked = !checkbox.checked;
-    // Cập nhật class 'active' dựa trên trạng thái của checkbox
     if (checkbox.checked) {
       btn.classList.add("active");
     } else {
@@ -26,8 +21,6 @@ btnCheck.forEach((btn, index) => {
     }
   });
 });
-
-// Khởi tạo trạng thái ban đầu cho các toggle-box dựa trên trạng thái của checkbox
 checkboxes.forEach((checkbox, index) => {
   var btn = btnCheck[index];
   if (checkbox.checked) {

@@ -20,6 +20,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="icon" href="Common/assets/img/pnj-icon.ico" type="image/x-icon" />
   </head>
   <body>
     <div class="wrapper">
@@ -105,7 +106,7 @@
                             <div class="comment">
                                 <div class="title-comment">
                                   <p>
-                                    <?=$comment['name_user']?>
+                                    <?=$comment['name_account']?>
                                   </p>
                                   <span>
                                     <?php for ($i=0; $i < 5; $i++) : ?>
@@ -119,10 +120,10 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                     
-                    <?php if (isset($_SESSION['name_user'])): ?>
+                    <?php if (isset($_SESSION['name_account'])): ?>
                         <button id="btn-comment">Viết bình luận</button>
                     <?php else: ?>
-                        <p class="text-login-form-comment">Vui lòng <a href="index.php?action=login-clients">đăng nhập</a> để viết bình luận!!!</p>
+                        <p class="text-login-form-comment">Vui lòng <a href="index.php?action=login">đăng nhập</a> để viết bình luận!!!</p>
                     <?php endif; ?>
                 </div>
             </div>

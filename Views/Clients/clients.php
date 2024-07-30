@@ -20,6 +20,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="icon" href="Common/assets/img/pnj-icon.ico" type="image/x-icon" />
   </head>
 
   <body>
@@ -223,57 +224,54 @@
               <!-- end flash sale -->
             <!-- new products -->
             <div class="wrapper-products">
-              <h2>Sản phẩm yêu thích</h2>
-              <div class="container-products">
-                <div class="list-products">
-                  <?php foreach ($products_favourite as $favourite) : ?>
-                    <div class="item-products">
+    <h2>Sản phẩm yêu thích</h2>
+    <div class="container-products">
+        <div class="list-products">
+            <?php foreach ($products_favourite as $favourite) : ?>
+                <div class="item-products">
                     <a href="index.php?action=productContent&product_id=<?=$favourite['id']?>" class="box-img">
-                      <img src="<?=$favourite['image']?>" alt="" />
-                      <img src="Common/assets/img/PNJfast-Giaotrong3h.svg" alt="" class="tag-social">
-                      <img src="Common/assets/img/icon-tragop-2.svg" alt="" class="tag-social">
-                      <img src="Common/assets/img/new-icon-3-w29.svg" alt="" class="tag-social">
+                        <img src="<?=$favourite['image']?>" alt="" />
+                        <img src="Common/assets/img/PNJfast-Giaotrong3h.svg" alt="" class="tag-social">
+                        <img src="Common/assets/img/icon-tragop-2.svg" alt="" class="tag-social">
+                        <img src="Common/assets/img/new-icon-3-w29.svg" alt="" class="tag-social">
                     </a>
                     <h3 class="title-products">
-                      <a href="index.php?action=productContent&product_id=<?=$favourite['id']?>"
-                        ><?=$favourite['name']?></a
-                      >
+                        <a href="index.php?action=productContent&product_id=<?=$favourite['id']?>"><?=$favourite['name']?></a>
                     </h3>
                     <p class="price-products"><?=$favourite['original_price'] . ".000đ"?></p>
                     <p class="rating-products">
-                    <span>
-                          <?php for ($i=0; $i < 5; $i++) : ?>
-                            <i class="fa-solid fa-star"></i>
-                          <?php endfor;?>
+                        <span>
+                            <?php for ($i=0; $i < 5; $i++) : ?>
+                                <i class="fa-solid fa-star"></i>
+                            <?php endfor;?>
                         </span>
                         <span><?=$favourite['view'] . " lượt xem"?></span>
                     </p>
                     <ul class="component-products">
-                      <li><i class="fa-regular fa-heart"></i></li>
-                      <li class="add-cart">
-                        <i class="box1 fa-solid fa-cart-shopping"></i>
-                        <span class="check"
-                          ><i class="fa-solid fa-check"></i
-                        ></span>
-                        <i class="box2 fa-solid fa-parachute-box"></i>
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-plus"><a href="#"></a></i>
-                      </li>
+                        <li><i class="fa-regular fa-heart"></i></li>
+                        <li class="add-cart">
+                            <i class="box1 fa-solid fa-cart-shopping"></i>
+                            <span class="check"><i class="fa-solid fa-check"></i></span>
+                            <i class="box2 fa-solid fa-parachute-box"></i>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-plus"><a href="#"></a></i>
+                        </li>
                     </ul>
-                  </div>
-                  <?php endforeach;?>
                 </div>
-              </div>
-              <div class="direction">
-                <button class="prev" type="button">
-                  <i class="fa-solid fa-angle-left"></i>
-                </button>
-                <button class="next" type="button">
-                  <i class="fa-solid fa-angle-right"></i>
-                </button>
-              </div>
-            </div>
+            <?php endforeach;?>
+        </div>
+    </div>
+    <div class="direction">
+        <button class="prev" type="button">
+            <i class="fa-solid fa-angle-left"></i>
+        </button>
+        <button class="next" type="button">
+            <i class="fa-solid fa-angle-right"></i>
+        </button>
+    </div>
+</div>
+
             <!-- end all products -->
           </div>
         </section>

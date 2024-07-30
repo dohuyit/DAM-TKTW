@@ -21,6 +21,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="icon" href="Common/assets/img/pnj-icon.ico" type="image/x-icon" />
   </head>
   <body>
     <div class="wrapper">

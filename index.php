@@ -16,6 +16,7 @@ require_once "Models/Models-admin/M.analystAdmin.php";
 require_once "Models/Models-clients/M.Clients.php";
 require_once "Models/Models-clients/M.productsClients.php";
 require_once "Models/Models-clients/M.commentClients.php";
+require_once "Models/Models-clients/M.inforUserClients.php";
 // CONTROLERS
 require_once "Controllers/categoryControllers.php";
 require_once "Controllers/userControllers.php";
@@ -28,6 +29,7 @@ require_once "Controllers/Controllers-admin/C.analystAdminControllers.php";
 // === Phần Clients ===//
 require_once "Controllers/Controllers-clients/C.ClientsControllers.php";
 require_once "Controllers/Controllers-clients/C.productsClientsControllers.php";
+require_once "Controllers/Controllers-clients/C.inforUserClientsControllers.php";
 $action = $_GET["action"] ?? "";
 pdo_get_connection();
 match ($action) {
@@ -37,6 +39,7 @@ match ($action) {
     "productContent" => (new ProductsClientController)->ProductsContent(),
     "add-comment" => (new ProductsClientController)->addComment(),
     "search-products" => (new ProductsClientController)->searchProducts(),
+    "inforUser" => (new inforUserClientsControllers)->listInfor(),
     "login" =>(new UserControllers)->loginUser(),
     "register" =>(new UserControllers)->registerUser(),
     "view-logout" =>(new UserControllers)->viewLogout(),

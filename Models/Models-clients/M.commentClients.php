@@ -16,7 +16,7 @@ class commentModelClients {
     }
 
     public function getCommentsByProduct($id) {
-        $sql = "SELECT comments.*, user.name_user FROM comments JOIN user ON comments.id_user = user.id_user WHERE id = :id ORDER BY day_comments DESC";
+        $sql = "SELECT comments.*, user.name_account FROM comments JOIN user ON comments.id_user = user.id_user WHERE id = :id ORDER BY day_comments DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

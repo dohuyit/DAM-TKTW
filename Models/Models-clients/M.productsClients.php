@@ -6,7 +6,6 @@ class ModelProductsClients{
     }
 
     public function getProductsByCate($id_cate,$excludeProductId = null){
-    //   $sql = "SELECT * FROM products WHERE id_cate = $id_cate ORDER BY id DESC";
     if ($excludeProductId !== null) {
         $sql = "SELECT * FROM products WHERE id_cate = $id_cate AND id != $excludeProductId ORDER BY id DESC";
     } else {
@@ -37,6 +36,15 @@ class ModelProductsClients{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+       public function increaseViewCount($id) {
+       $sql = "UPDATE products SET view = view + 1 WHERE id = :id";
+       $stmt = $this->conn->prepare($sql);
+       $stmt->execute([
+           ':id' => $id
+        ]);
+    }
+
     public function __destruct()
     {
         $this->conn = null;

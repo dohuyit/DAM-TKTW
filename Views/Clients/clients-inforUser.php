@@ -9,7 +9,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="stylesheet" href="Common/assets/css/reset.css" />
-    <link rel="stylesheet" href="Common/assets/css/clients-category-all.css" />
+    <link rel="stylesheet" href="Common/assets/css/clients-inforUser.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
       rel="stylesheet"
@@ -27,23 +27,58 @@
     <?php include_once "./Views/Clients/layout/header.php" ?>
           <main>
             <section>
-              <div class="main-heading">
-                <div class="container">
-                  <div><h1><span>Trang chủ</span>/<span><?=$name_cate?></span></h1></div>
-                </div>
-                <div class="banner-collection">
-                  <img src="<?= $img_cate?>" alt="">
-                </div>
-              </div>
-              <div class="main-body">
-                <div class="container">
-                  
+              <div class="container">
+                <div class="main-body">
+                  <div class="title-main">
+                    <h1>Thông tin cá nhân</h1>
+                  </div>
+                  <div class="information">
+                  <form action="" method="post" enctype="multipart/form-data">
+                    <div class="box-image">
+                     <img src="<?=isset($userClients['image_user']) && !empty($userClients['image_user']) ? $userClients['image_user'] : 'Common/assets/img/default-img.jpg' ?>" alt="" id="img-show">
+                     <div class="input-wrap">
+                  <label for="input-file" class="custom-file-upload">
+                <span>Chọn Ảnh</span>
+                <i class="fa-solid fa-camera-retro"></i>
+            </label>
+            <input id="input-file" type="file" name="image_user"/>
+            <input type="hidden" name="image_user" value="<?=$userClients['image_user']?>">
+        </div>
+    </div>
+    <div class="box-content">
+        <div class="item-infor">
+            <label for="">Tên người dùng</label>
+            <input type="text" name="name_user" id="" placeholder="Nhập tên người dùng..." value="<?=$userClients['name_user']?>">
+        </div>
+        <div class="item-infor">
+            <label for="">Email</label>
+            <input type="email" name="email_user" id="" placeholder="Nhập email..." value="<?=$userClients['email_user']?>">
+        </div>
+        <div class="item-infor">
+            <label for="">Giới tính</label>
+            <select name="gender_user" id="">
+                <option value="0" <?= ($userClients['gender_user'] == 0) ? 'selected' : '' ?>>Nam</option>
+                <option value="1" <?= ($userClients['gender_user'] == 1) ? 'selected' : '' ?>>Nữ</option>
+            </select>
+        </div>
+        <div class="item-infor">
+            <label for="">Địa chỉ</label>
+            <textarea name="address_user" id="" cols="30" rows="10" placeholder="Nhập địa chỉ của bạn..."><?=$userClients['address_user']?></textarea>
+        </div>
+        <input type="hidden" name="id_user" value="<?=$userClients['id_user']?>">
+        <div class="btn-item">
+            <button type="submit">Lưu thay đổi</button>
+        </div>
+    </div>
+</form>
+
+                  </div>
                 </div>
               </div>
             </section>
-         </main>
-         <?php include_once "./Views/Clients/layout/footer.php" ?>
+          </main>
+      <?php include_once "./Views/Clients/layout/footer.php" ?>
     </div>
-    <script src="Common/assets/js/clients-category.js"></script>
+    <script src="Common/assets/js/admin.js"></script>
   </body>
 </html>

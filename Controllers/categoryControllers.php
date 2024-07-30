@@ -1,7 +1,7 @@
 <?php 
 class CategoryControllers{
     public function __construct() {
-        if (!isset($_SESSION['name_user'])) {
+        if (!isset($_SESSION['name_account'])) {
             header("location: index.php?action=login");
             die();
         }
@@ -14,9 +14,9 @@ class CategoryControllers{
     }
     public function listCategory(){
         $this->checkUserRole();
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
         $dataCateAll = (new CategoryModel)->getAllCategories();
-        viewAdmin('myCategory',['dataCateAll'=>$dataCateAll,'name_user'=>$name_user]);
+        viewAdmin('myCategory',['dataCateAll'=>$dataCateAll,'name_account'=>$name_account]);
     }
 
     public function storeCategory(){
@@ -41,12 +41,12 @@ class CategoryControllers{
     
         if (!empty($errors)) {
             $dataCateAll = (new CategoryModel)->getAllCategories();
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
             return viewAdmin('myCategory', [
                 'errors' => $errors,
                 'FormCate' => $FormCate,
                 'dataCateAll' => $dataCateAll,
-                'name_user' => $name_user,
+                'name_account' => $name_account,
             ]);
         }
     
@@ -85,13 +85,13 @@ class CategoryControllers{
         }
         $id_cate = $_GET['id'];
         $category = (new CategoryModel)->getOneCategories($id_cate);
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
         viewAdmin('update-category',
         [
         'category' => $category,
         'errors' => $errors,
         'message' => $message,
-        'name_user' => $name_user,
+        'name_account' => $name_account,
         ]
       );
     }

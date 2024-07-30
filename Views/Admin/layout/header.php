@@ -17,7 +17,7 @@
                     <i class="fa-solid fa-user"></i>
                     <p>
                       <span>Xin chào,</span>
-                      <span><?=$name_user['name_user']?></span>
+                      <span><?=$name_account['name_account']?></span>
                     </p>
                   </div>
                   <div class="tab-component-user">

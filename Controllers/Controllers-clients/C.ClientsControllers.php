@@ -21,7 +21,7 @@ class ClientsControllers {
         $pearl_products = (new ModelClients)->getPearl();
         $valentine_products = (new ModelClients)->getValentine();
         $watch_products = (new ModelClients)->getWatch();
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
         viewClients("clients", [
             'cate_data' => $cate_data,
             'products_sale' => $products_sale,
@@ -31,8 +31,9 @@ class ClientsControllers {
             'pearl_products' => $pearl_products,
             'valentine_products' => $valentine_products,
             'watch_products' => $watch_products,
-            'name_user' => $name_user
+            'name_account' => $name_account
         ]);
     }
 }
+
 ?>

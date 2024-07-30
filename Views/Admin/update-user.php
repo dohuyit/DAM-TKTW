@@ -21,7 +21,6 @@
       <?php include_once "./Views/Admin/layout/header.php"?>
         <main>
           <section>
-            <?=$message ?>
             <div class="container">
               <div class="title-main">
                 <h1>Cập nhật người dùng</h1>
@@ -32,7 +31,7 @@
                     <form action="" method="post" enctype="multipart/form-data">
                       <div class="box-image">
                         <div class="image-wrap">
-                          <img src="<?=$user['image_user']?>" alt="">
+                          <img src="<?=isset($user['image_user']) && !empty($user['image_user']) ? $user['image_user'] : 'Common/assets/img/default-img.jpg' ?>" alt="">
                         </div>
                         <div class="input-wrap">
                           <label for="file-upload" class="custom-file-upload">
@@ -44,13 +43,26 @@
                         </div>
                       </div>
                       <div class="box-content">
+                      <div class="item-content">
+                          <label for="">Tên tài khoản</label>
+                          <input type="text" name="name_account" id="" placeholder="Nhập tên người dùng..." value="<?=$user['name_account']?>">
+                          <?php if(isset($errors['name_account'])) :?>
+                            <p class="errors-text"><?=$errors['name_account']?></p>
+                          <?php endif;?>
+                        </div>
                         <div class="item-content">
                           <label for="">Tên người dùng</label>
                           <input type="text" name="name_user" id="" placeholder="Nhập tên người dùng..." value="<?=$user['name_user']?>">
+                          <?php if(isset($errors['name_user'])) :?>
+                            <p class="errors-text"><?=$errors['name_user']?></p>
+                          <?php endif;?>
                         </div>
                         <div class="item-content">
                           <label for="">Email</label>
                           <input type="email" name="email_user" id="" placeholder="Nhập email..." value="<?=$user['email_user']?>">
+                          <?php if(isset($errors['email_user'])) :?>
+                            <p class="errors-text"><?=$errors['email_user']?></p>
+                          <?php endif;?>
                         </div>
                         <div class="item-content">
                           <label for="">Giới tính</label>
@@ -62,10 +74,6 @@
                         <div class="item-content">
                           <label for="">Mật khẩu</label>
                           <input type="password" name="password" id="" placeholder="Nhập mật khẩu..." value="<?=$user['password']?>">
-                        </div>
-                        <div class="item-content">
-                          <label for="">Ngày sinh</label>
-                          <input type="date" name="birday_user" id="" value="<?=$user['birday_user'] ?? ''?>">
                         </div>
                         <div class="item-content">
                           <label for="">Địa chỉ</label>

@@ -29,7 +29,7 @@
               <div class="main-content">
                 <div class="body">
                   <div class="body-first">
-                    <a href="index.php?action=add-user" id="btn-add-cate"><span>Thêm người dùng mới</span><i class="fa-solid fa-plus"></i></a>
+                    <a href="index.php?action=add-user" id="btn-add-cate"><span>Thêm tài khoản</span><i class="fa-solid fa-plus"></i></a>
                   </div>
                   <div class="body-second">
                     <table>

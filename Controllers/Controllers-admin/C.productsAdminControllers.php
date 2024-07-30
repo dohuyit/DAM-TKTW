@@ -2,7 +2,7 @@
 class AdminProductsControllers{
     public function __construct()
     {
-        if(!isset($_SESSION['name_user'])){
+        if(!isset($_SESSION['name_account'])){
             header("location: index.php?action=login");
             die;
         }
@@ -17,16 +17,16 @@ class AdminProductsControllers{
 
     public function listProducts(){
         $this->checkUserRole();
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
         $dataAll = (new ModelProductsAdmin)->getAllProducts();
-        viewAdmin('myProducts',['dataAll'=>$dataAll,'name_user'=>$name_user]);
+        viewAdmin('myProducts',['dataAll'=>$dataAll,'name_account'=>$name_account]);
     }
 
     public function addProducts(){
         $this->checkUserRole();
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
         $dataCate = (new CategoryModel)->getAllCategories();
-        viewAdmin('add-products',['dataCate'=>$dataCate,'name_user'=>$name_user]);
+        viewAdmin('add-products',['dataCate'=>$dataCate,'name_account'=>$name_account]);
     }
 
     public function storeProducts(){
@@ -60,12 +60,12 @@ class AdminProductsControllers{
     
         if (!empty($errors)) {
             $dataCate = (new CategoryModel)->getAllCategories();
-            $name_user = $_SESSION['name_user'] ?? '';
+            $name_account = $_SESSION['name_account'] ?? '';
             return viewAdmin('add-products', [
                 'dataCate' => $dataCate,
                 'errors' => $errors,
                 'dataForm' => $dataForm,
-                'name_user' => $name_user
+                'name_account' => $name_account
             ]);
         }
     
@@ -117,14 +117,14 @@ class AdminProductsControllers{
       $dataCate = (new CategoryModel)->getAllCategories();
       $id_products = $_GET['id'];
       $products = (new ModelProductsAdmin)->getOneProducts($id_products);
-      $name_user = $_SESSION['name_user'] ?? '';
+      $name_account = $_SESSION['name_account'] ?? '';
       viewAdmin('update-products',
       [ 
         'dataCate' => $dataCate,
         'products' => $products,
         'errors' => $errors,
         'message' => $message,
-        'name_user' => $name_user,
+        'name_account' => $name_account,
       ]
     );
     }

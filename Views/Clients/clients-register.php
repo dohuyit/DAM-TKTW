@@ -37,15 +37,15 @@
         </article>
         <form action="index.php?action=register" method="post">
           <div class="item-form">
-            <label for="">Username</label>
+            <label for="">Tên tài khoản</label>
             <input
               type="text"
-              name="name_user"
+              name="name_account"
               id=""
               placeholder="Tài khoản của bạn..."
             />
-            <?php if (isset($errors['name_user'])) :?>
-                <p class="errors-form"><span>&#10006</span><span><?=$errors['name_user']?></span></p>
+            <?php if (isset($errors['name_account'])) :?>
+                <p class="errors-form"><span>&#10006</span><span><?=$errors['name_account']?></span></p>
             <?php endif ?>
           </div>
           <div class="item-form">

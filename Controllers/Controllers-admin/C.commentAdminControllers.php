@@ -3,7 +3,7 @@ class commentAdminControllers{
 
     public function __construct()
     {
-        if(!isset($_SESSION['name_user'])){
+        if(!isset($_SESSION['name_account'])){
             header("location: index.php?action=login");
             die;
         }
@@ -17,21 +17,21 @@ class commentAdminControllers{
     }
     public function listComments(){
         $this->checkUserRole();
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
         $data_comments = (new ModelCommentAdmin)->getAllComment();
         viewAdmin('a.comment',[
-            'name_user' => $name_user,
+            'name_account' => $name_account,
             'data_comments' => $data_comments
         ]);
     }
 
     public function viewContentComments(){
         $this->checkUserRole();
-        $name_user = $_SESSION['name_user'] ?? '';
+        $name_account = $_SESSION['name_account'] ?? '';
         $id = $_GET['id'];
         $data_views = (new ModelCommentAdmin)->getCommentsByProductId($id);
         viewAdmin('a.view-comment',[
-            'name_user' => $name_user,
+            'name_account' => $name_account,
             'data_views' => $data_views,
         ]);
     }

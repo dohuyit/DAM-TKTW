@@ -27,21 +27,21 @@
                   </a>
                 </div>
                 <div class="item-col">
-                    <?php if(!isset($_SESSION['name_user'])) : ?>
+                    <?php if(!isset($_SESSION['name_account'])) : ?>
                     <a href="index.php?action=login">
                     <i class="fa-solid fa-user-tie"></i>
                     <span>Tài khoản của tôi</span>
                     </a>
                     <?php else :?>
                       <i class="fa-solid fa-user-tie"></i>
-                      <span>Xin chào, <?=$name_user['name_user']?></span>
+                      <span>Xin chào, <?=$name_account['name_account']?></span>
                     <?php endif;?>
-                  <?php if(isset($_SESSION['name_user'])) : ?>
+                  <?php if(isset($_SESSION['name_account'])) : ?>
                   <div class="tab-component">
                     <ul class="list-component">
                       <li>
                         <i class="fa-solid fa-circle-user"></i
-                        ><a href="#">Tài Khoản</a>
+                        ><a href="index.php?action=inforUser&id=<?=$_SESSION['name_account']['id_user']?>">Tài Khoản</a>
                       </li>
                       <li>
                         <i class="fa-solid fa-right-from-bracket"></i
