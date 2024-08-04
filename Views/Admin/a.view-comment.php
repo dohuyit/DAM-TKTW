@@ -12,6 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="icon" href="Common/assets/img/pnj-icon.ico" type="image/x-icon" />
     <title>Document</title>
   </head>
   <body>
@@ -41,7 +42,7 @@
                       <tbody id="user-table-body">
                         <?php foreach ($data_views as $view ) :?>
                           <tr>
-                          <td><p><?= $view['name_user']?></p></td>
+                          <td><p><?= $view['name_account']?></p></td>
                           <td><p><?= $view['content_comments']?></p></td>
                           <td><p><?= $view['day_comments']?></p></td>
                           <td class="button-close"><a href="index.php?action=delete-comment&id_delete=<?=$view['id_comments']?>"><i class="fa-solid fa-circle-xmark"></i></a></td>

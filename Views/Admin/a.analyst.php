@@ -13,6 +13,7 @@
       referrerpolicy="no-referrer"
     />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="icon" href="Common/assets/img/pnj-icon.ico" type="image/x-icon" />
     <title>Document</title>
   </head>
   <body>

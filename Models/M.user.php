@@ -5,7 +5,7 @@ class userModels{
         $this->conn = pdo_get_connection();
     }
 
-    public function getAllUser($name_account){
+    public function getLoginUser($name_account){
         $sql = "SELECT user.*,roles.name_role FROM user INNER JOIN roles ON user.id_role = roles.id_role WHERE name_account = :name_account";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':name_account' => $name_account]);

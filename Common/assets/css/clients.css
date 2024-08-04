@@ -559,7 +559,7 @@ main .direction button {
   position: absolute;
   top: 0px;
   left: 0;
-  width: 60px;
+  width: 70px;
   height: 30px;
   background-color: #003868;
   color: #ffffff;
@@ -571,6 +571,17 @@ main .direction button {
   border-radius: 10px 10px 10px 0px;
   z-index: 9999;
 }
+
+/* #wrap-sale .tag-sale::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background-color: #003868;
+  z-index: -1;
+} */
 
 #wrap-sale .price-products {
   display: flex;

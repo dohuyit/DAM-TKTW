@@ -46,7 +46,7 @@
               value="<?= htmlspecialchars($name_account ?? '' )?>"
             />
             <?php if (isset($errors['name_account'])) :?>
-                <p class="errors-form"><span>&#10006</span><span><?=$errors['name_account']?></span></p>
+                <p class="errors-form"><span>&#10006</span><span><?=htmlspecialchars($errors['name_account'])?></span></p>
             <?php endif ?>
           </div>
           <div class="item-form">
@@ -58,7 +58,7 @@
               placeholder="Mật khẩu của bạn..."
             />
             <?php if (isset($errors['password'])) :?>
-                <p class="errors-form"><span>&#10006</span><span><?=$errors['password']?></span></p>
+                <p class="errors-form"><span>&#10006</span><span><?=htmlspecialchars($errors['password'])?></span></p>
             <?php endif ?>
           </div>
           <div class="form-check">

@@ -13,7 +13,7 @@ class ModelCommentAdmin{
     }
 
     public function getCommentsByProductId($product_id) {
-      $sql = "SELECT user.name_user,comments.id_comments, comments.content_comments, comments.day_comments
+      $sql = "SELECT user.name_account,comments.id_comments, comments.content_comments, comments.day_comments
               FROM comments
               INNER JOIN user ON comments.id_user = user.id_user
               WHERE comments.id = :product_id";

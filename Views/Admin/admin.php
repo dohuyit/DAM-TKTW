@@ -51,6 +51,7 @@
         chart.draw(data, options);
       }
     </script>
+    <link rel="icon" href="Common/assets/img/pnj-icon.ico" type="image/x-icon" />
     <title>Document</title>
   </head>
   <body>

@@ -12,6 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="icon" href="Common/assets/img/pnj-icon.ico" type="image/x-icon" />
     <title>Document</title>
   </head>
   <body>
@@ -35,7 +36,7 @@
                     <table>
                       <thead>
                         <tr>
-                          <th>Tên người dùng</th>
+                          <th>Tên tài khoản</th>
                           <th>Email</th>
                           <th>Mật khẩu</th>
                           <th>Khóa</th>
@@ -46,7 +47,7 @@
                       <tbody id="user-table-body">
                         <?php foreach ($data_users as $data_user) :?>
                             <tr>
-                          <td><p><?=$data_user['name_user']?></p></td>
+                          <td><p><?=$data_user['name_account']?></p></td>
                           <td><p><?=$data_user['email_user']?></p></td>
                           <td><p><?=$data_user['password']?></p></td>
                           <td>

@@ -12,6 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="icon" href="Common/assets/img/pnj-icon.ico" type="image/x-icon" />
     <title>Document</title>
   </head>
   <body>
@@ -31,14 +32,14 @@
                     <form action="" method="post" enctype="multipart/form-data">
                       <div class="box-image">
                         <div class="image-wrap">
-                          <img src="<?=isset($user['image_user']) && !empty($user['image_user']) ? $user['image_user'] : 'Common/assets/img/default-img.jpg' ?>" alt="">
+                          <img src="<?=isset($user['image_user']) && !empty($user['image_user']) ? $user['image_user'] : 'Common/assets/img/default-img.jpg' ?>" alt="" id="img-show">
                         </div>
                         <div class="input-wrap">
-                          <label for="file-upload" class="custom-file-upload">
+                          <label for="input-file" class="custom-file-upload">
                             <span>Chọn Ảnh</span>
                             <i class="fa-solid fa-camera-retro"></i>
                           </label>
-                         <input id="file-upload" type="file" name="image_user"/>
+                          <input id="input-file" type="file" name="image_user"/>
                          <input type="hidden" name="image_user" value="<?=$user['image_user']?>">
                         </div>
                       </div>
@@ -93,7 +94,7 @@
                           <label for="">Trạng thái hoạt động</label>
                           <select name="option_user" id="">
                             <option value="0" <?= ($user['option_user'] == 0) ? 'selected' : '' ?>>Hoạt Động</option>
-                            <option value="1" <?= ($user['option_user'] == 0) ? 'selected' : '' ?>>Dừng Hoạt Động</option>
+                            <option value="1" <?= ($user['option_user'] == 1) ? 'selected' : '' ?>>Dừng Hoạt Động</option>
                           </select>
                         </div>
                         <input type="hidden" name="id_user" value="<?=$user['id_user']?>">

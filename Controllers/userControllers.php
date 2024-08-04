@@ -12,7 +12,7 @@ class UserControllers{
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $name_account = $_POST['name_account'];
             $password = $_POST['password'];
-            $dataUser = (new userModels)->getAllUser($name_account);
+            $dataUser = (new userModels)->getLoginUser($name_account);
 
             if (empty($name_account) || empty($password)) {
                 if (empty($name_account) && empty($password)) {
@@ -25,16 +25,20 @@ class UserControllers{
                 };
               } else {
                 if ($dataUser) {
-                    if ($password === $dataUser['password']) {
-                        $_SESSION['name_account'] = $dataUser;
-                        $_SESSION['role'] = $dataUser['name_role'];
-                        if ($dataUser['name_role'] === 'admin') {
-                            echo "<script>alert('Đăng nhập thành công!');window.location.href='index.php?action=admin';</script>";
+                    if($dataUser['option_user'] != 0){
+                        echo "<script>alert('Tài khoản của bạn đã bị khóa, vui lòng liên hệ quản trị viên!');</script>";
+                    }else{
+                        if ($password === $dataUser['password']) {
+                            $_SESSION['name_account'] = $dataUser;
+                            $_SESSION['role'] = $dataUser['name_role'];
+                            if ($dataUser['name_role'] === 'admin') {
+                                echo "<script>alert('Đăng nhập thành công!');window.location.href='index.php?action=admin';</script>";
+                            } else {
+                              echo "<script>alert('Đăng nhập thành công!');window.location.href='index.php';</script>";
+                            }
                         } else {
-                          echo "<script>alert('Đăng nhập thành công!');window.location.href='index.php';</script>";
+                            $errors['password'] = "Mật khẩu không đúng, hãy nhập lại";
                         }
-                    } else {
-                        $errors['password'] = "Mật khẩu không đúng, hãy nhập lại";
                     }
                 } else {
                     $errors['name_account'] = "Tài khoản không đúng, hãy nhập lại";
