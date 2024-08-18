@@ -472,6 +472,13 @@ table tbody tr td:last-child a:last-child{
   background-color: #ff1717;
 }
 
+table tbody tr td:last-child a:last-child button{
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
 
 footer .body{
   background-color: var(--background-primary);

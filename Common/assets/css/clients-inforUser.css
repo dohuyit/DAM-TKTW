@@ -56,6 +56,7 @@ header {
 
 .row-body .col-4:nth-child(3) .item-col:last-child {
   position: relative;
+  cursor: pointer;
 }
 
 .row-body .col-4:nth-child(3) .item-col:last-child .tab-component {
@@ -66,22 +67,51 @@ header {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   z-index: 1000;
   top: 245%;
-  padding: 14px 8px;
   opacity: 0;
+  /* opacity: 1; */
   visibility: hidden;
   transform: scale(0);
   transition: 0.5s ease;
   transform-origin: top;
 }
 
-.row-body .tab-component .list-component li {
+.row-body .tab-component .list-component a {
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  padding: 10px 0;
+  justify-content: space-between;
+  gap: 5px;
+  padding: 14px 10px;
+  position: relative;
+  overflow: hidden;
 }
 
-.row-body .tab-component .list-component li:first-child {
+.row-body .tab-component .list-component a span {
+  font-weight: bold;
+}
+
+.list-component a::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: #003868;
+  height: 150px;
+  width: 250px;
+  border-radius: 50%;
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.list-component a:hover {
+  color: #fff;
+}
+
+.list-component a:hover::before {
+  left: -30px;
+  top: -30px;
+}
+
+.row-body .tab-component .list-component a:first-child {
   border-bottom: 1px solid #dadada;
 }
 
@@ -235,6 +265,7 @@ nav form button {
   border-bottom-right-radius: 15px;
   background-color: transparent;
   transition: 0.5s ease-in;
+  cursor: pointer;
 }
 
 nav form button:hover {
@@ -314,10 +345,10 @@ nav form button:hover {
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(4, auto);
-  column-gap: 5%;
+  column-gap: 2%;
 }
 
-.box-content .item-infor label {
+.box-content .item-infor .label-heading {
   display: block;
   font-size: 16px;
   font-weight: 600;
@@ -337,7 +368,7 @@ nav form button:hover {
   width: 100%;
   border-radius: 8px;
   outline: none;
-  border: 1px solid #d8d3d3;
+  border: 1px solid #b1adad;
   padding: 0 10px;
 }
 
@@ -351,12 +382,156 @@ nav form button:hover {
     select,
     textarea
   ):focus {
-  border: 2px solid #003468;
+  border: 2px solid #2774c0;
 }
 
-.box-content .item-infor:nth-child(6) {
+.box-content :is(.item-infor:nth-child(3), .item-infor:nth-child(4)) {
   grid-column: 1/3;
 }
+
+/* ======= gender===== */
+.radio-inputs {
+  display: flex;
+  align-items: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.radio-inputs > * {
+  margin: 6px;
+}
+
+:where(.female:checked, .male:checked) + .radio-tile {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-color: #fff;
+}
+
+:where(.female:checked, .male:checked) + .radio-tile::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+:where(.female:checked, .male:checked)
+  + .radio-tile
+  :is(.radio-icon i, strong) {
+  color: #fff;
+}
+
+:where(.female:focus, .male:focus) + .radio-tile {
+  border-color: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
+}
+
+:where(.female:focus, .male:focus) + .radio-tile:before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.radio-tile .radio-icon i {
+  font-size: 27px;
+}
+
+.radio-tile strong {
+  font-family: sans-serif;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.female:checked + .radio-tile {
+  border-color: #991977;
+  color: #991977;
+}
+
+.female:checked + .radio-tile:before {
+  background-color: #991977;
+  border-color: #991977;
+}
+
+.female:checked + .radio-tile .radio-label {
+  color: #991977;
+}
+
+.female:focus + .radio-tile {
+  background-color: #991977;
+}
+
+.female:checked + .radio-tile {
+  background-color: #991977;
+}
+
+.male:checked + .radio-tile {
+  border-color: #003468;
+  color: #003468;
+}
+
+.male:checked + .radio-tile:before {
+  background-color: #003468;
+  border-color: #003468;
+}
+
+.male:checked + .radio-tile .radio-label {
+  color: #003468;
+}
+
+.male:focus + .radio-tile {
+  background-color: #003468;
+}
+.male:checked + .radio-tile {
+  background-color: #003468;
+}
+
+.radio-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  min-height: 80px;
+  border-radius: 0.5rem;
+  border: 2px solid #b5bfd9;
+  background-color: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.15s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.female:hover {
+  border-color: #991977;
+  color: #991977;
+}
+.male:hover {
+  border-color: #003468;
+  color: #003468;
+}
+
+.radio-tile:hover:before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.radio-label {
+  color: #707070;
+  transition: 0.375s ease;
+  text-align: center;
+  font-size: 13px;
+}
+
+.radio-input {
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* ================== */
 
 .box-content .item-infor textarea {
   width: 100%;
@@ -364,9 +539,10 @@ nav form button:hover {
   border-radius: 8px;
   padding: 15px;
   border: 1px solid #d8d3d3;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.box-content .btn-item:nth-child(7) {
+.box-content .btn-item:nth-child(6) {
   grid-column: 1/3;
   margin-top: 20px;
   /* width: 100%; */

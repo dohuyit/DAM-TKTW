@@ -373,7 +373,7 @@ table tbody tr:nth-child(even){
 
 table tbody tr td:last-child p{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -404,6 +404,13 @@ table tbody tr td:last-child a:last-child{
   background-color: #ff1717;
 }
 
+table tbody tr td:last-child a:last-child button{
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
 /* ================== toggle ==================== */
 .toggle-box {
   border: 2px solid #f0ebeb;
@@ -429,7 +436,7 @@ table tbody tr td:last-child a:last-child{
   position: absolute;
   top: 10%;
   left: 40%;
-  transform: scale(5,2);
+  transform: scale(9,2);
   z-index: 999999;
  }
  

@@ -411,7 +411,7 @@ table tbody tr td:last-child a:last-child{
   position: absolute;
   top: 10%;
   left: 40%;
-  transform: scale(5,2);
+  transform: scale(8,3);
   z-index: 999999;
  }
  

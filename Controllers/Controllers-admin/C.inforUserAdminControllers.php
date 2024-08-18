@@ -1,43 +1,48 @@
-<?php 
-class inforUserAdminControllers{
+<?php
+class inforUserAdminControllers
+{
 
     public function __construct()
     {
-        if(!isset($_SESSION['name_account'])){
+        if (!isset($_SESSION['name_account'])) {
             header("location: index.php?action=login");
             die;
         }
     }
 
-    private function checkUserRole() {
+    private function checkUserRole()
+    {
         if ($_SESSION['role'] !== 'admin') {
             echo "<script>alert('Bạn không có quyền truy cập trang này!');window.location.href='index.php';</script>";
             exit();
         }
     }
-    public function listUser(){
+    public function listUser()
+    {
         $this->checkUserRole();
         $name_account = $_SESSION['name_account'] ?? '';
         $data_users = (new inforUserModel)->getAllUser();
-        viewAdmin('myUser',[
+        viewAdmin('myUser', [
             'data_users' => $data_users,
             'name_account' => $name_account
         ]);
     }
 
-    public function addUser(){
+    public function addUser()
+    {
         $this->checkUserRole();
         $name_account = $_SESSION['name_account'] ?? '';
-        $dataRole= (new inforUserModel)->getAllRole();
-        viewAdmin('add-user',[
+        $dataRole = (new inforUserModel)->getAllRole();
+        viewAdmin('add-user', [
             'dataRole' => $dataRole,
             'name_account' => $name_account
         ]);
     }
 
-    public function storeUser(){
-        $errors =[];
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    public function storeUser()
+    {
+        $errors = [];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dataForm = $_POST;
             $id_role = 1;
             if (empty($dataForm['name_account'])) {
@@ -48,8 +53,8 @@ class inforUserAdminControllers{
             }
             if (empty($dataForm['email_user'])) {
                 $errors['email_user'] = "Email không được để trống";
-            }else{
-                if ((new inforUserModel)->countAllInforUser($dataForm['email_user'] )) {
+            } else {
+                if ((new inforUserModel)->countAllInforUser($dataForm['email_user'])) {
                     $errors['email_user'] = "Email đã tồn tại, hãy chọn email khác";
                 }
             }
@@ -66,23 +71,31 @@ class inforUserAdminControllers{
                 ]);
             }
         }
-        (new inforUserModel)->add($dataForm['name_account'],$dataForm['name_user'],$dataForm['email_user'],$dataForm['password'],$id_role);
-        echo '<script>alert("Thêm dữ liệu thành công"); window.location.href = "index.php?action=admin-user";</script>';    
+        (new inforUserModel)->add($dataForm['name_account'], $dataForm['name_user'], $dataForm['email_user'], $dataForm['password'], $id_role);
+        $_SESSION['alert'] = [
+            'title' => 'Success',
+            'message' => 'Thêm dữ liệu thành công!',
+            'type' => 'success',
+            'redirect' => 'index.php?action=admin-user',
+        ];
+        showAlert();
+        exit();
     }
 
-    public function updateUser(){
+    public function updateUser()
+    {
         $this->checkUserRole();
         $message = '';
         $errors = [];
-    
+
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $dataForm = $_POST;
-    
+
             $id_user = $dataForm['id_user'];
-            if ((new inforUserModel)->countAllInforUserExceptCurrent( $dataForm['email_user'], $id_user)) {
+            if ((new inforUserModel)->countAllInforUserExceptCurrent($dataForm['email_user'], $id_user)) {
                 $errors['email_user'] = "Email đã tồn tại, hãy chọn email khác";
             }
-    
+
             $img_user = '';
             $file_img_user = $_FILES['image_user'];
             if ($file_img_user['size'] > 0) {
@@ -96,10 +109,11 @@ class inforUserAdminControllers{
                     move_uploaded_file($file_img_user['tmp_name'], $img_user);
                 }
             }
-    
+
             if (!empty($errors)) {
                 $dataRole = (new inforUserModel)->getAllRole();
                 $name_account = $_SESSION['name_account'] ?? '';
+
                 $user = (new inforUserModel)->getOneUser($id_user);
                 return viewAdmin('update-user', [
                     'dataRole' => $dataRole,
@@ -108,13 +122,21 @@ class inforUserAdminControllers{
                     'name_account' => $name_account,
                 ]);
             }
-    
+
             (new inforUserModel)->update($dataForm);
-             echo '<script>alert("Cập nhật dữ liệu thành công"); window.location.href = "index.php?action=admin-user";</script>';
+            //  echo '<script>alert("Cập nhật dữ liệu thành công"); window.location.href = "index.php?action=admin-user";</script>';
+            $_SESSION['alert'] = [
+                'title' => 'Success',
+                'message' => 'Cập nhật dữ liệu thành công!',
+                'type' => 'success',
+                'redirect' => 'index.php?action=admin-user',
+            ];
+            showAlert();
+            exit();
         }
-    
+
         $dataRole = (new inforUserModel)->getAllRole();
-        $id_user = $_GET['id'] ?? $dataForm['id_user'];
+        $id_user = $_GET['id'];
         $user = (new inforUserModel)->getOneUser($id_user);
         $name_account = $_SESSION['name_account'] ?? '';
         viewAdmin('update-user', [
@@ -125,12 +147,18 @@ class inforUserAdminControllers{
             'name_account' => $name_account,
         ]);
     }
-    
-    public function deleteUser(){
+
+    public function deleteUser()
+    {
         $id = $_GET['id'];
         (new inforUserModel)->delete($id);
-        echo '<script>alert("Xóa dữ liệu thành công"); window.location.href = "index.php?action=admin-user";</script>';
-        die;
+        $_SESSION['alert'] = [
+            'title' => 'Success',
+            'message' => 'Xóa dữ liệu thành công!',
+            'type' => 'success',
+            'redirect' => 'index.php?action=admin-user',
+        ];
+        showAlert();
+        exit();
     }
 }
-?>

@@ -30,6 +30,27 @@ function sliderShow() {
 
   var index = 0;
   var lengthImg = imgItem.length - 1;
+
+  let autoReload = setInterval(() => {
+    btnNext.click();
+  }, 2500);
+
+  function reloadSlider() {
+    let checkleft = imgItem[index].offsetLeft;
+    slide.style.transform = `translateX(-${checkleft}px)`;
+
+    let lastActiveDot = document.querySelector(".dots-slide li.active");
+    lastActiveDot.classList.remove("active");
+    dots[index].classList.add("active");
+  }
+
+  dots.forEach((li, key) => {
+    li.addEventListener("click", function () {
+      index = key;
+      reloadSlider();
+    });
+  });
+
   btnNext.onclick = function () {
     if (index === lengthImg) {
       index = 0;
@@ -37,6 +58,7 @@ function sliderShow() {
       index++;
     }
     reloadSlider();
+    clearInterval(autoReload);
   };
 
   btnPre.onclick = function () {
@@ -46,31 +68,8 @@ function sliderShow() {
       index--;
     }
     reloadSlider();
-  };
-
-  let autoReload = setInterval(() => {
-    btnNext.click();
-  }, 4000);
-
-  function reloadSlider() {
-    let checkleft = imgItem[index].offsetLeft;
-    slide.style.transform = `translateX(-${checkleft}px)`;
-
-    let lastActiveDot = document.querySelector(".dots-slide li.active");
-    lastActiveDot.classList.remove("active");
-    dots[index].classList.add("active");
     clearInterval(autoReload);
-    let autoReload = setInterval(() => {
-      btnNext.click();
-    }, 4000);
-  }
-
-  dots.forEach((li, key) => {
-    li.addEventListener("click", function () {
-      index = key;
-      reloadSlider();
-    });
-  });
+  };
 }
 sliderShow();
 
@@ -200,13 +199,24 @@ function slider() {
         container.scrollLeft += widthItem;
       }
     }
-    let autoScrollInterval = setInterval(autoScroll, 3500);
-    container.addEventListener("mouseover", function () {
+    let autoScrollInterval = setInterval(autoScroll, 2500);
+
+    function stopAutoScroll() {
       clearInterval(autoScrollInterval);
-    });
-    container.addEventListener("mouseout", function () {
-      autoScrollInterval = setInterval(autoScroll, 3500);
-    });
+    }
+
+    function startAutoScroll() {
+      autoScrollInterval = setInterval(autoScroll, 2500);
+    }
+
+    container.addEventListener("mouseover", stopAutoScroll);
+    container.addEventListener("mouseout", startAutoScroll);
+
+    prevBtns[index].addEventListener("mouseover", stopAutoScroll);
+    prevBtns[index].addEventListener("mouseout", startAutoScroll);
+
+    nextBtns[index].addEventListener("mouseover", stopAutoScroll);
+    nextBtns[index].addEventListener("mouseout", startAutoScroll);
   });
 }
 

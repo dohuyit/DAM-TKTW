@@ -25,7 +25,10 @@ function sliderItem() {
   const container = document.querySelector(".container-products");
   const widthItem = document.querySelector(".item-products").offsetWidth + 20;
 
-  document.getElementById("btn-right").onclick = function () {
+  const btnRight = document.getElementById("btn-right");
+  const btnLeft = document.getElementById("btn-left");
+
+  btnRight.onclick = function () {
     if (container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
       container.scrollLeft = 0;
     } else {
@@ -33,7 +36,7 @@ function sliderItem() {
     }
   };
 
-  document.getElementById("btn-left").onclick = function () {
+  btnLeft.onclick = function () {
     if (container.scrollLeft <= 0) {
       container.scrollLeft = container.scrollWidth - container.offsetWidth;
     } else {
@@ -48,51 +51,66 @@ function sliderItem() {
       container.scrollLeft += widthItem;
     }
   }
+  let autoScrollInterval = setInterval(autoScroll, 2000);
 
-  let autoScrollInterval = setInterval(autoScroll, 3000);
-
-  container.addEventListener("mouseover", function () {
+  function stopAutoScroll() {
     clearInterval(autoScrollInterval);
-  });
+  }
 
-  container.addEventListener("mouseout", function () {
-    autoScrollInterval = setInterval(autoScroll, 3000);
-  });
+  function startAutoScroll() {
+    autoScrollInterval = setInterval(autoScroll, 2000);
+  }
+
+  container.addEventListener("mouseover", stopAutoScroll);
+  container.addEventListener("mouseout", startAutoScroll);
+
+  btnRight.addEventListener("mouseover", stopAutoScroll);
+  btnRight.addEventListener("mouseout", startAutoScroll);
+
+  btnLeft.addEventListener("mouseover", stopAutoScroll);
+  btnLeft.addEventListener("mouseout", startAutoScroll);
 }
 
 sliderItem();
 
-// ======================== ADD TO CART=========================//
-var btnCart = document.querySelectorAll(".add-cart");
-btnCart.forEach((btn, index) => {
-  btnCart[index].addEventListener("click", () => {
-    btnCart[index].classList.add("active");
-    setTimeout(() => {
-      document.getElementById("audio_blink").play();
-    }, 3300);
+// ============================= line Desc ==================//
+document.addEventListener("DOMContentLoaded", function () {
+  const pElement = document.getElementById("formatted-text");
+  const lines = pElement.innerHTML.split("\n");
 
-    setTimeout(() => {
-      btnCart[index].classList.remove("active");
-    }, 4200);
+  // Tạo một biến để lưu trữ văn bản đã định dạng
+  let formattedText = "";
+
+  // Duyệt qua từng dòng và bao quanh bằng thẻ <span>
+  lines.forEach((line, index) => {
+    // Nếu dòng là dòng chẵn, thêm class "even-line"
+    if ((index + 1) % 2 === 0) {
+      formattedText += `<span class="even-line">${line}</span>\n`;
+    } else {
+      formattedText += `<span>${line}</span>\n`;
+    }
   });
+
+  // Cập nhật lại nội dung của phần tử <p>
+  pElement.innerHTML = formattedText;
 });
 
-// =============================================================//
+//=========================== end ============================//
 
 // =============================TAB COMMENT =================//
-document.addEventListener('DOMContentLoaded', function() {
-  const commentButton = document.getElementById('btn-comment');
-  const innerOverlayComment = document.getElementById('innerOverlayComment');
+document.addEventListener("DOMContentLoaded", function () {
+  const commentButton = document.getElementById("btn-comment");
+  const innerOverlayComment = document.getElementById("innerOverlayComment");
 
-  commentButton.addEventListener('click', function() {
-    innerOverlayComment.style.display = 'flex';
-    document.body.classList.add('no-scroll');
+  commentButton.addEventListener("click", function () {
+    innerOverlayComment.style.display = "flex";
+    document.body.classList.add("no-scroll");
   });
 
-  innerOverlayComment.addEventListener('click', function(event) {
+  innerOverlayComment.addEventListener("click", function (event) {
     if (event.target === innerOverlayComment) {
-      innerOverlayComment.style.display = 'none';
-      document.body.classList.remove('no-scroll');
+      innerOverlayComment.style.display = "none";
+      document.body.classList.remove("no-scroll");
     }
   });
 });

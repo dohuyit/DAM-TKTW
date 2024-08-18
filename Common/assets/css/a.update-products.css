@@ -326,6 +326,79 @@ main h1 {
   outline: 2px solid #1d39ef;
 }
 
+.option-sale {
+  display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  gap: 30px;
+  margin: 10px 0 0 8px;
+}
+
+.option-sale input[type="radio"] {
+  display: none;
+}
+
+.option-sale label {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: rgb(0, 0, 0);
+  border-radius: 5px;
+  margin-right: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.option-sale label:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  transition: all 0.3s ease-in-out;
+}
+
+.option-sale input[type="radio"]:checked + label:before {
+  background-color: #0fd008;
+  color: #fff;
+  content: "✔";
+  top: 0;
+  width: 15px;
+  height: 15px;
+  padding: 2px;
+}
+
+.option-sale input[type="radio"]:checked + label {
+  background-color: #002c84;
+  color: #fff;
+  animation: radio-translate 0.5s ease-in-out;
+}
+
+@keyframes radio-translate {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .main-content form input[type="file"] {
   /* padding: 10px; */
   background-color: var(--background-primary);

@@ -56,6 +56,7 @@ header {
 
 .row-body .col-4:nth-child(3) .item-col:last-child {
   position: relative;
+  cursor: pointer;
 }
 
 .row-body .col-4:nth-child(3) .item-col:last-child .tab-component {
@@ -66,22 +67,51 @@ header {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   z-index: 1000;
   top: 245%;
-  padding: 14px 8px;
   opacity: 0;
+  /* opacity: 1; */
   visibility: hidden;
   transform: scale(0);
   transition: 0.5s ease;
   transform-origin: top;
 }
 
-.row-body .tab-component .list-component li {
+.row-body .tab-component .list-component a {
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  padding: 10px 0;
+  justify-content: space-between;
+  gap: 5px;
+  padding: 14px 10px;
+  position: relative;
+  overflow: hidden;
 }
 
-.row-body .tab-component .list-component li:first-child {
+.row-body .tab-component .list-component a span {
+  font-weight: bold;
+}
+
+.list-component a::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: #003868;
+  height: 150px;
+  width: 250px;
+  border-radius: 50%;
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.list-component a:hover {
+  color: #fff;
+}
+
+.list-component a:hover::before {
+  left: -30px;
+  top: -30px;
+}
+
+.row-body .tab-component .list-component a:first-child {
   border-bottom: 1px solid #dadada;
 }
 
@@ -235,6 +265,7 @@ nav form button {
   border-bottom-right-radius: 15px;
   background-color: transparent;
   transition: 0.5s ease-in;
+  cursor: pointer;
 }
 
 nav form button:hover {
@@ -476,6 +507,9 @@ input:checked + label {
 .tab-item {
   width: 60%;
   cursor: pointer;
+  /* box-shadow: rgba(0, 0, 0, 0.185) 1px 1px 11px; */
+  padding: 5px 10px 25px;
+  border-radius: 10px;
 }
 
 #description-products .title-tab {
@@ -488,11 +522,22 @@ input:checked + label {
 }
 
 .tab-item:nth-child(1) .content-tab p {
-  line-height: 30px;
+  /* line-height: 30px; */
   font-size: 16px;
   color: #4c4c4c;
-  padding: 0 15px;
-  white-space: pre;
+  padding: 0 0 0 5px;
+  /* white-space: pre; */
+  margin-top: 10px;
+}
+
+.tab-item:nth-child(1) .content-tab p span {
+  display: block;
+  font-weight: 600;
+  padding: 10px 0 10px 5px;
+}
+
+.tab-item:nth-child(1) .content-tab p span.even-line {
+  background-color: #8b89892f;
 }
 
 .tab-item:nth-child(2) {
@@ -509,14 +554,15 @@ input:checked + label {
 .tab-item:nth-child(2) .content-tab .text-empty {
   width: 100%;
   height: 150px;
-  background-color: #cac8c8;
-  font-size: 16px;
+  background-color: #cccccc;
+  font-size: 18px;
   color: #fff;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  border-radius: 9px;
 }
 
 .tab-item:nth-child(2) .content-tab .comment {
@@ -527,8 +573,8 @@ input:checked + label {
   align-items: start;
   justify-content: center;
   flex-direction: column;
-  padding: 10px;
-  margin: 10px 0 30px;
+  padding: 10px 0 10px 20px;
+  margin: 10px 0 15px;
   position: relative;
 }
 
@@ -536,7 +582,7 @@ input:checked + label {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
+  left: 1%;
   width: 2px;
   height: 100%;
   background-color: #4b84ee;
@@ -560,18 +606,18 @@ input:checked + label {
 }
 
 .tab-item:nth-child(2) .content-tab .comment .text-comments {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 10px;
 }
 
 .inner-overlay-comment {
-  display: none; /* Initially hidden */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.678);
   z-index: 1000;
   justify-content: center;
   align-items: center;
@@ -612,6 +658,7 @@ input:checked + label {
   border-radius: 10px;
   outline: none;
   font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .container-comment button {
@@ -672,6 +719,7 @@ body.no-scroll {
 .wrapper-products {
   position: relative;
   border-top: 1px solid #a29f9f;
+  margin-top: 15px;
 }
 
 .wrapper-products h2 {

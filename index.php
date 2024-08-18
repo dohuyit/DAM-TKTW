@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 // Common folder
 require_once "Common/env.php";
@@ -32,6 +32,7 @@ require_once "Controllers/Controllers-clients/C.productsClientsControllers.php";
 require_once "Controllers/Controllers-clients/C.inforUserClientsControllers.php";
 $action = $_GET["action"] ?? "";
 pdo_get_connection();
+showAlert();
 match ($action) {
     // Phần clients page
     "" => (new ClientsControllers)->myClients(),
@@ -40,17 +41,17 @@ match ($action) {
     "add-comment" => (new ProductsClientController)->addComment(),
     "search-products" => (new ProductsClientController)->searchProducts(),
     "inforUser" => (new inforUserClientsControllers)->listInfor(),
-    "login" =>(new UserControllers)->loginUser(),
-    "register" =>(new UserControllers)->registerUser(),
-    "view-logout" =>(new UserControllers)->viewLogout(),
-    "logout" =>(new UserControllers)->logoutUser(),
+    "login" => (new UserControllers)->loginUser(),
+    "register" => (new UserControllers)->registerUser(),
+    "view-logout" => (new UserControllers)->viewLogout(),
+    "logout" => (new UserControllers)->logoutUser(),
     // Phần admin page
     // 1. CRUD danh mục
     "admin" => (new AdminControllers)->myAdmin(),
-    "category" =>(new CategoryControllers)->listCategory(),
-    "store-cate" =>(new CategoryControllers)->storeCategory(),
-    "update-cate" =>(new CategoryControllers)->updateCategory(),
-    "delete-cate" =>(new CategoryControllers)->deleteCategory(),
+    "category" => (new CategoryControllers)->listCategory(),
+    "store-cate" => (new CategoryControllers)->storeCategory(),
+    "update-cate" => (new CategoryControllers)->updateCategory(),
+    "delete-cate" => (new CategoryControllers)->deleteCategory(),
     // 2. CRUD sản phẩm
     "admin-products" => (new AdminProductsControllers)->listProducts(),
     "add-products" => (new AdminProductsControllers)->addProducts(),
@@ -58,17 +59,16 @@ match ($action) {
     "update-products" => (new AdminProductsControllers)->updateProducts(),
     "delete-products" => (new AdminProductsControllers)->deleteProducts(),
     //3. CRUD người dùng
-    "admin-user" => (new inforUserAdminControllers()) ->listUser(),
-    "add-user" => (new inforUserAdminControllers()) ->addUser(),
-    "store-user" => (new inforUserAdminControllers()) ->storeUser(),
-    "update-user" => (new inforUserAdminControllers()) ->updateUser(),
-    "delete-user" => (new inforUserAdminControllers()) ->deleteUser(),
+    "admin-user" => (new inforUserAdminControllers())->listUser(),
+    "add-user" => (new inforUserAdminControllers())->addUser(),
+    "store-user" => (new inforUserAdminControllers())->storeUser(),
+    "update-user" => (new inforUserAdminControllers())->updateUser(),
+    "delete-user" => (new inforUserAdminControllers())->deleteUser(),
     //4. CRUD bình luận
-    "admin-comment" => (new commentAdminControllers()) ->listComments(),
-    "admin-view-comment" => (new commentAdminControllers()) ->viewContentComments(),
-    "delete-comment" => (new commentAdminControllers()) ->deleteComment(),
+    "admin-comment" => (new commentAdminControllers())->listComments(),
+    "admin-view-comment" => (new commentAdminControllers())->viewContentComments(),
+    "delete-comment" => (new commentAdminControllers())->deleteComment(),
     // 5. Quản lí thống kê
     "admin-analyst" => (new analystAdminControllers())->listChart(),
     default =>  "Không tìm thấy trang này!",
-}
-?>
+};

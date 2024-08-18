@@ -56,6 +56,7 @@ header {
 
 .row-body .col-4:nth-child(3) .item-col:last-child {
   position: relative;
+  cursor: pointer;
 }
 
 .row-body .col-4:nth-child(3) .item-col:last-child .tab-component {
@@ -66,22 +67,51 @@ header {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   z-index: 1000;
   top: 245%;
-  padding: 14px 8px;
   opacity: 0;
+  /* opacity: 1; */
   visibility: hidden;
   transform: scale(0);
   transition: 0.5s ease;
   transform-origin: top;
 }
 
-.row-body .tab-component .list-component li {
+.row-body .tab-component .list-component a {
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  padding: 10px 0;
+  justify-content: space-between;
+  gap: 5px;
+  padding: 14px 10px;
+  position: relative;
+  overflow: hidden;
 }
 
-.row-body .tab-component .list-component li:first-child {
+.row-body .tab-component .list-component a span {
+  font-weight: bold;
+}
+
+.list-component a::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: #003868;
+  height: 150px;
+  width: 250px;
+  border-radius: 50%;
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.list-component a:hover {
+  color: #fff;
+}
+
+.list-component a:hover::before {
+  left: -30px;
+  top: -30px;
+}
+
+.row-body .tab-component .list-component a:first-child {
   border-bottom: 1px solid #dadada;
 }
 
@@ -235,6 +265,7 @@ nav form button {
   border-bottom-right-radius: 15px;
   background-color: transparent;
   transition: 0.5s ease-in;
+  cursor: pointer;
 }
 
 nav form button:hover {
@@ -285,8 +316,8 @@ main .slider-main {
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
-  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; */
   transition: 0.5s ease;
 }
 
@@ -383,6 +414,18 @@ main .slider-main {
 .item-child:hover span:nth-child(4) {
   height: 90%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@media (min-width: 1920px) {
+  .banner-child {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 25px;
+  }
+
+  .banner-child .item-child img {
+    width: 100%;
+  }
 }
 
 main .wrapper-hot-category {
@@ -527,10 +570,11 @@ main .direction button {
 
 #wrap-sale {
   background: url(../img/background-sale.jpg),
-    linear-gradient(to bottom, #30cfd0 0%, #330867 100%);
+    /* linear-gradient(to bottom, #30cfd0 0%, #330867 100%); */
+      linear-gradient(to bottom, #30abd0 0%, #330867 100%);
   background-repeat: no-repeat;
   background-position: top;
-  height: 700px;
+  height: 620px;
   border-radius: 15px;
   margin: 20px 0;
   position: relative;
@@ -546,7 +590,7 @@ main .direction button {
 }
 
 #wrap-sale .direction {
-  top: 65%;
+  top: 60%;
 }
 
 #wrap-sale .item-products {
@@ -849,8 +893,7 @@ main .direction button {
   margin-top: 40px;
 }
 
-.banner-title img,
-#pro-gold .banner-title {
+.banner-title img {
   border-radius: 6px;
 }
 
@@ -865,7 +908,7 @@ main .direction button {
   text-align: center;
 }
 
-#pro-gold .banner-title {
+/* #pro-gold .banner-title {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -882,7 +925,7 @@ main .direction button {
   100% {
     background-image: url(../img/ts-cz-t6-24-v1-1200x450-CTA.jpg);
   }
-}
+} */
 
 .wrap-store {
   background-image: url(../img/cuahangbanner.jpg);
@@ -944,6 +987,7 @@ main .direction button {
   max-width: 800px;
   transform: translateY(-7%);
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .wrap-store .body p {

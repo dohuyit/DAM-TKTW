@@ -139,7 +139,7 @@
                      <?php foreach ($listNewUsers as $newUser): ?>
                       <div class="cart-user-store">
                       <img src="Common/assets/img/round-account-button-with-user-inside_icon-icons.com_72596.svg" alt="">
-                      <p><?=$newUser['name_user']?></p>
+                      <p><?=$newUser['name_account']?></p>
                       <span><a href="index.php?action=admin-user">Xem chi tiết</a></span>
                      </div>
                      <?php endforeach;?>

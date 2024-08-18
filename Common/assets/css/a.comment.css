@@ -377,6 +377,13 @@ table tbody tr :is(.button-view,.button-close) a i{
   background-color: #ff3030;
 }
 
+.button-close a button{
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
 .btn-revert{
   display: inline-block;
   background-color: #0b4a81;

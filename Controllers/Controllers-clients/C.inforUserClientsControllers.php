@@ -1,6 +1,8 @@
-<?php 
-class inforUserClientsControllers{
-    public function listInfor(){
+<?php
+class inforUserClientsControllers
+{
+    public function listInfor()
+    {
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $dataForm = $_POST;
@@ -34,17 +36,24 @@ class inforUserClientsControllers{
                 ]);
             }
             (new ModelsInforUserClients)->update($dataForm);
-            echo '<script>alert("Gửi dữ liệu thành công"); window.location.href = "index.php?action=inforUser&id=' . $_SESSION['name_account']['id_user'] . '";</script>';
-
+            $_SESSION['alert'] = [
+                'title' => 'Success',
+                'message' => 'Cập nhật thành công!',
+                'type' => 'success',
+                'redirect' => 'index.php?action=inforUser&id=' . $_SESSION['name_account']['id_user'],
+            ];
+            showAlert();
+            exit();
         }
         $id_user = $_GET['id'];
+        $cate_data = (new CategoryModel)->getAllCategories();
         $userClients = (new ModelsInforUserClients)->getOneUser($id_user);
         $name_account = $_SESSION['name_account'] ?? '';
         viewClients('clients-inforUser', [
             'userClients' => $userClients,
             'errors' => $errors,
             'name_account' => $name_account,
+            'cate_data' => $cate_data,
         ]);
     }
 }
-?>
